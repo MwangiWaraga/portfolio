@@ -30,14 +30,28 @@ export default function Portfolio() {
   };
 
   const technicalStack = {
-    'Data Engineering': ['sql (BigQuery, PostgreSQL)', 'Python', 'dbt', 'Looker Studio', 'Metabase', 'REST APIs'],
-    'Automation & Scripting': ['Google Apps Script', 'FastAPI', 'FlaskAPI', 'Docker', 'Advanced Excel Logic'],
+    'Data & Cloud Engineering': ['GCP (Compute Engine, Cloud Scheduler)', 'sql (BigQuery, PostgreSQL)', 'Python', 'Redis', 'dbt', 'Metabase'],
+    'Architecture & Automation': ['FastAPI / Microservices', 'Docker & Docker Compose', 'uv (Python Packaging)', 'Google Apps Script', 'REST APIs'],
     'Business Operations': ['Variance Analysis', 'Root Cause Analysis', 'Financial Reconciliation', 'Demand Forecasting', 'SLA Monitoring']
   };
 
   const projects = [
     {
       id: 1,
+      company: 'Watu Credit',
+      title: 'WhatsApp FO Verifier Microservice (GCP)',
+      challenge: 'Verifying Field Officers via WhatsApp required instant responses, but direct BigQuery lookups introduced unacceptable latency, timeout risks, and high per-query costs.',
+      solution: 'Architected a FastAPI microservice deployed on GCP Compute Engine, backed by a Redis caching layer. Engineered an automated Python pipeline using `uv` and Docker to sync BigQuery data to Redis hourly, utilizing a dual-key indexing strategy (Phone & UserID).',
+      impact: [
+        { metric: '< 5ms', label: 'Verification Latency' },
+        { metric: '$0', label: 'Real-time BQ Costs' },
+        { metric: 'Global', label: 'Scalable to UG, BR, MX' }
+      ],
+      tech: ['GCP', 'FastAPI', 'Redis', 'BigQuery', 'Docker'],
+      linkText: 'View Architecture'
+    },
+    {
+      id: 2,
       company: 'Watu Credit',
       title: 'Automated Validation Pipelines & Escalation Systems',
       challenge: 'Critical turnaround times were delayed by manual data extraction, error-prone spreadsheets, and disconnected operational metrics.',
@@ -48,10 +62,10 @@ export default function Portfolio() {
         { metric: 'Real-time', label: 'SLA Visibility' }
       ],
       tech: ['Python', 'BigQuery', 'Google Apps Script', 'FastAPI'],
-      linkText: 'View Architecture'
+      linkText: 'View Pipeline'
     },
     {
-      id: 2,
+      id: 3,
       company: 'mPharma',
       title: 'Inventory Audit Automation & Forecasting',
       challenge: 'Operational stock variances and inaccurate supply/demand forecasts were disrupting the complex medtech supply chain.',
@@ -65,10 +79,10 @@ export default function Portfolio() {
       linkText: 'View Case Study'
     },
     {
-      id: 3,
+      id: 4,
       company: 'Jakan Enterprise',
       title: 'E-Commerce Data Architecture',
-      challenge: 'Managing dropshipping inventory and sales data across multiple storefronts (Jakan Phone Store, Jakan Collection) lacked centralized visibility.',
+      challenge: 'Managing dropshipping inventory and sales data across multiple storefronts lacked centralized visibility.',
       solution: 'Initiated an enterprise data architecture project. Built ETL pipelines to ingest multi-channel storefront data into BigQuery, utilized dbt for data transformations, and visualized metrics via Metabase.',
       impact: [
         { metric: 'Unified', label: 'Multi-Channel Data' },
@@ -85,7 +99,7 @@ export default function Portfolio() {
       role: 'Process Analyst',
       company: 'Watu Credit',
       period: 'Jan 2025 – Present',
-      description: 'Bridging the gap between heavy infrastructure and daily workflows. Developing BigQuery pipelines and custom automation scripts to eliminate operational bottlenecks.',
+      description: 'Bridging the gap between heavy infrastructure and daily workflows. Architecting cloud-native microservices (GCP, Docker, Redis) and BigQuery pipelines to eliminate operational bottlenecks.',
       highlight: 'Recognized as Employee of the Month (Jan 2026) for driving operational automation.',
       location: 'Nairobi, Kenya'
     },
@@ -881,8 +895,8 @@ export default function Portfolio() {
               style={{ transitionDelay: `${index * 0.15}s` }}
             >
               <div className="stack-icon">
-                {category === 'Data Engineering' && <Database size={24} />}
-                {category === 'Automation & Scripting' && <Terminal size={24} />}
+                {category === 'Data & Cloud Engineering' && <Database size={24} />}
+                {category === 'Architecture & Automation' && <Terminal size={24} />}
                 {category === 'Business Operations' && <BarChart3 size={24} />}
               </div>
               <h3>{category}</h3>
