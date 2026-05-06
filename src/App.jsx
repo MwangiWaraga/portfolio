@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Github, Linkedin, ChevronDown, Database, Terminal, BarChart3, Award, Download, ExternalLink, Briefcase, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { Mail, ChevronDown, Database, Terminal, BarChart3, Award, Download, ExternalLink, Briefcase, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -845,11 +846,11 @@ export default function Portfolio() {
               View My Work
             </a>
             <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
-              <Linkedin size={18} />
+              <FaLinkedin size={18} />
               LinkedIn
             </a>
             <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
-              <Github size={18} />
+              <FaGithub size={18} />
               GitHub
             </a>
             <a href="mailto:jackmwangu@gmail.com" className="cta-button cta-secondary">
@@ -1066,8 +1067,8 @@ export default function Portfolio() {
       <footer className="footer">
         <p>© {new Date().getFullYear()} Jackson Mwangi. Built with React & Lucide.</p>
         <div className="footer-social">
-          <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer"><Linkedin size={20} /></a>
-          <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer"><Github size={20} /></a>
+          <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={20} /></a>
+          <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer"><FaGithub size={20} /></a>
           <a href="mailto:jackmwangu@gmail.com"><Mail size={20} /></a>
         </div>
       </footer>

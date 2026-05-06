@@ -2,8 +2,11 @@
   "name": "my-portfolio",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://MwangiWaraga.github.io/portfolio",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -12,7 +15,8 @@
   "dependencies": {
     "lucide-react": "^1.14.0",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "react-icons": "^5.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
