@@ -25,14 +25,19 @@ Error generating stack: `+e.message+`
           --accent-secondary: #0ea5e9;
           --accent-glow: rgba(56, 189, 248, 0.15);
           --border-color: #334155;
-          --success-glow: rgba(34, 197, 94, 0.16);
+          --success-glow: rgba(56, 189, 248, 0.16);
+          --container-width: 1140px;
         }
 
         html {
           scroll-behavior: smooth;
+          width: 100%;
+          overflow-x: hidden;
         }
 
         body {
+          width: 100%;
+          min-width: 0;
           background: var(--bg-primary);
           color: var(--text-primary);
           font-family: 'Inter', sans-serif;
@@ -40,10 +45,17 @@ Error generating stack: `+e.message+`
           overflow-x: hidden;
         }
 
+        button,
+        a {
+          -webkit-tap-highlight-color: transparent;
+        }
+
         .portfolio {
           position: relative;
           z-index: 1;
+          width: 100%;
           min-height: 100vh;
+          overflow-x: hidden;
           background:
             radial-gradient(circle at top center, rgba(56, 189, 248, 0.08), transparent 35%),
             var(--bg-primary);
@@ -65,8 +77,9 @@ Error generating stack: `+e.message+`
         nav {
           position: fixed;
           top: 0;
+          left: 0;
           width: 100%;
-          background: rgba(2, 6, 23, 0.86);
+          background: rgba(2, 6, 23, 0.88);
           backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--border-color);
           z-index: 1000;
@@ -74,40 +87,43 @@ Error generating stack: `+e.message+`
         }
 
         .nav-content {
-          max-width: 1200px;
+          width: min(var(--container-width), calc(100% - 3rem));
           margin: 0 auto;
-          padding: 0 2rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: 2rem;
         }
 
-        .logo {
-          font-family: 'Fira Code', monospace;
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--accent-primary);
+        .brand-name {
+          color: var(--text-primary);
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: 800;
           letter-spacing: -0.02em;
           white-space: nowrap;
+          transition: color 0.3s;
         }
 
-        .logo span {
-          color: var(--text-primary);
+        .brand-name:hover {
+          color: var(--accent-primary);
         }
 
         .nav-links {
           display: flex;
-          gap: 1.6rem;
+          gap: 1.45rem;
           list-style: none;
           align-items: center;
+          flex-wrap: nowrap;
         }
 
         .nav-links a {
           color: var(--text-secondary);
           text-decoration: none;
           font-size: 0.9rem;
-          font-weight: 500;
+          font-weight: 600;
           transition: color 0.3s;
+          white-space: nowrap;
         }
 
         .nav-links a:hover,
@@ -120,7 +136,7 @@ Error generating stack: `+e.message+`
           display: flex;
           align-items: center;
           position: relative;
-          padding: 8rem 2rem 4rem;
+          padding: 8rem 0 4rem;
           overflow: hidden;
         }
 
@@ -137,19 +153,18 @@ Error generating stack: `+e.message+`
         }
 
         .hero-container {
-          max-width: 1200px;
+          width: min(var(--container-width), calc(100% - 3rem));
           margin: 0 auto;
-          width: 100%;
-          display: flex;
+          display: grid;
+          grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
           align-items: center;
-          justify-content: space-between;
-          gap: 4rem;
+          gap: 3rem;
           position: relative;
           z-index: 2;
         }
 
         .hero-content {
-          flex: 1.2;
+          min-width: 0;
           animation: fadeInUp 1s ease-out;
         }
 
@@ -158,13 +173,14 @@ Error generating stack: `+e.message+`
           align-items: center;
           gap: 0.5rem;
           font-family: 'Fira Code', monospace;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--accent-primary);
           background: var(--accent-glow);
-          padding: 0.5rem 1.2rem;
+          padding: 0.5rem 1.1rem;
           border-radius: 20px;
           border: 1px solid rgba(56, 189, 248, 0.3);
           margin-bottom: 1.5rem;
+          white-space: nowrap;
         }
 
         .hero-label span {
@@ -174,59 +190,65 @@ Error generating stack: `+e.message+`
           border-radius: 50%;
           box-shadow: 0 0 10px var(--accent-primary);
           animation: pulse 2s infinite;
+          flex-shrink: 0;
         }
 
         .hero h1 {
-          font-size: clamp(3rem, 5vw, 4.7rem);
+          font-size: clamp(3.2rem, 5.4vw, 4.5rem);
           font-weight: 800;
           margin-bottom: 0.5rem;
-          line-height: 1.05;
-          letter-spacing: -0.04em;
+          line-height: 1.02;
+          letter-spacing: -0.055em;
+          white-space: nowrap;
         }
 
         .hero-subtitle {
-          font-size: clamp(1.1rem, 2vw, 1.35rem);
+          font-size: clamp(1.05rem, 1.7vw, 1.32rem);
           color: var(--text-secondary);
-          margin-bottom: 1rem;
-          font-weight: 400;
+          margin-bottom: 1.1rem;
+          font-weight: 500;
+          white-space: nowrap;
         }
 
         .hero-subtitle span {
           color: var(--accent-primary);
+          margin: 0 0.28rem;
         }
 
         .offerings-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.8rem;
+          gap: 0.7rem;
           margin-bottom: 2rem;
+          max-width: 650px;
         }
 
         .offering-tag {
           font-family: 'Fira Code', monospace;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--accent-primary);
           border: 1px solid var(--border-color);
           background: rgba(30, 41, 59, 0.76);
           padding: 0.35rem 0.8rem;
           border-radius: 999px;
+          white-space: nowrap;
         }
 
         .hero-description {
-          font-size: 1.08rem;
+          font-size: 1.06rem;
           color: var(--text-secondary);
           margin-bottom: 2rem;
-          max-width: 680px;
+          max-width: 650px;
           line-height: 1.75;
         }
 
         .hero-stats {
           display: flex;
-          gap: 2.5rem;
-          margin-bottom: 2.5rem;
-          padding-bottom: 2.5rem;
+          gap: 2.4rem;
+          margin-bottom: 2.4rem;
+          padding-bottom: 2.3rem;
           border-bottom: 1px solid var(--border-color);
-          max-width: 640px;
+          max-width: 650px;
         }
 
         .stat-item {
@@ -244,10 +266,11 @@ Error generating stack: `+e.message+`
         }
 
         .stat-label {
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           color: var(--accent-primary);
           text-transform: uppercase;
           letter-spacing: 0.05em;
+          white-space: nowrap;
         }
 
         .hero-cta {
@@ -263,12 +286,13 @@ Error generating stack: `+e.message+`
           gap: 0.6rem;
           padding: 0.9rem 1.5rem;
           border-radius: 8px;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 0.95rem;
           text-decoration: none;
           transition: all 0.3s;
           border: none;
           cursor: pointer;
+          white-space: nowrap;
         }
 
         .cta-primary {
@@ -294,18 +318,18 @@ Error generating stack: `+e.message+`
         }
 
         .hero-image-container {
-          flex: 0.8;
           display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
           animation: fadeInUp 1.2s ease-out;
+          min-width: 0;
         }
 
         .hero-image-wrapper {
           position: relative;
-          width: 320px;
-          height: 320px;
+          width: min(310px, 100%);
+          aspect-ratio: 1;
           border-radius: 50%;
           padding: 8px;
           background: linear-gradient(135deg, var(--accent-primary), var(--bg-primary));
@@ -323,7 +347,7 @@ Error generating stack: `+e.message+`
 
         .floating-badge {
           position: absolute;
-          background: rgba(15, 23, 42, 0.92);
+          background: rgba(15, 23, 42, 0.94);
           border: 1px solid var(--border-color);
           padding: 0.6rem 1rem;
           border-radius: 10px;
@@ -331,6 +355,7 @@ Error generating stack: `+e.message+`
           align-items: center;
           gap: 0.5rem;
           font-size: 0.85rem;
+          font-weight: 700;
           color: var(--text-primary);
           backdrop-filter: blur(10px);
           box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -339,13 +364,13 @@ Error generating stack: `+e.message+`
 
         .badge-1 {
           top: 10%;
-          right: -15%;
+          right: -13%;
           animation: float 4s ease-in-out infinite;
         }
 
         .badge-2 {
           bottom: 15%;
-          left: -10%;
+          left: -9%;
           animation: float 5s ease-in-out infinite reverse;
         }
 
@@ -367,8 +392,8 @@ Error generating stack: `+e.message+`
         }
 
         .section {
-          padding: 7rem 2rem;
-          max-width: 1200px;
+          padding: 7rem 0;
+          width: min(var(--container-width), calc(100% - 3rem));
           margin: 0 auto;
           position: relative;
           z-index: 2;
@@ -409,6 +434,7 @@ Error generating stack: `+e.message+`
           font-weight: 800;
           color: var(--text-primary);
           letter-spacing: -0.03em;
+          line-height: 1.1;
         }
 
         .section-intro {
@@ -421,8 +447,8 @@ Error generating stack: `+e.message+`
 
         .stack-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+          gap: 1.5rem;
         }
 
         .stack-category,
@@ -430,11 +456,12 @@ Error generating stack: `+e.message+`
           background: rgba(15, 23, 42, 0.62);
           border: 1px solid var(--border-color);
           border-radius: 16px;
-          padding: 2.4rem;
+          padding: 2.2rem;
           transition: all 0.4s;
           opacity: 0;
           transform: translateY(30px);
           backdrop-filter: blur(10px);
+          min-width: 0;
         }
 
         .stack-category.visible,
@@ -467,7 +494,8 @@ Error generating stack: `+e.message+`
         .service-card h3 {
           font-size: 1.3rem;
           margin-bottom: 1rem;
-          font-weight: 700;
+          font-weight: 800;
+          line-height: 1.2;
         }
 
         .service-description {
@@ -487,7 +515,7 @@ Error generating stack: `+e.message+`
           color: var(--text-secondary);
           padding: 0.5rem 1rem;
           border-radius: 6px;
-          font-size: 0.86rem;
+          font-size: 0.84rem;
           border: 1px solid var(--border-color);
           font-family: 'Fira Code', monospace;
           transition: all 0.3s;
@@ -501,18 +529,19 @@ Error generating stack: `+e.message+`
         .projects-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 3rem;
+          gap: 2rem;
         }
 
         .project-card {
           background: rgba(15, 23, 42, 0.62);
           border: 1px solid var(--border-color);
           border-radius: 16px;
-          padding: 3rem;
+          padding: 2.6rem;
           opacity: 0;
           transform: translateY(40px);
           transition: all 0.6s ease-out;
           backdrop-filter: blur(10px);
+          min-width: 0;
         }
 
         .project-card.visible {
@@ -544,6 +573,7 @@ Error generating stack: `+e.message+`
           font-weight: 800;
           color: var(--text-primary);
           letter-spacing: -0.02em;
+          line-height: 1.15;
         }
 
         .project-type {
@@ -563,7 +593,7 @@ Error generating stack: `+e.message+`
           color: var(--text-secondary);
           text-decoration: none;
           font-size: 0.9rem;
-          font-weight: 700;
+          font-weight: 800;
           transition: color 0.3s;
           white-space: nowrap;
         }
@@ -574,8 +604,8 @@ Error generating stack: `+e.message+`
 
         .project-content-grid {
           display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 3rem;
+          grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
+          gap: 2.5rem;
           margin-top: 2rem;
         }
 
@@ -596,9 +626,9 @@ Error generating stack: `+e.message+`
 
         .project-impact {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 1rem;
-          padding: 1.5rem;
+          padding: 1.4rem;
           background: rgba(2, 6, 23, 0.74);
           border-radius: 12px;
           border: 1px solid var(--border-color);
@@ -606,14 +636,15 @@ Error generating stack: `+e.message+`
 
         .impact-metric {
           font-family: 'Fira Code', monospace;
-          font-size: 1.35rem;
+          font-size: 1.3rem;
           font-weight: 800;
           color: var(--text-primary);
           margin-bottom: 0.2rem;
+          line-height: 1.2;
         }
 
         .impact-label {
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           color: var(--accent-primary);
           line-height: 1.35;
         }
@@ -629,7 +660,7 @@ Error generating stack: `+e.message+`
 
         .tech-tag {
           font-family: 'Fira Code', monospace;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           background: var(--bg-tertiary);
           color: var(--text-primary);
           padding: 0.4rem 0.8rem;
@@ -658,8 +689,8 @@ Error generating stack: `+e.message+`
 
         .resume-layout {
           display: grid;
-          grid-template-columns: 1.5fr 1fr;
-          gap: 4rem;
+          grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.9fr);
+          gap: 3.5rem;
         }
 
         .experience-timeline {
@@ -750,6 +781,7 @@ Error generating stack: `+e.message+`
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
+          min-width: 0;
         }
 
         .side-card {
@@ -819,16 +851,18 @@ Error generating stack: `+e.message+`
         }
 
         .contact-card {
+          width: 100%;
           background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.7));
           border: 1px solid rgba(56, 189, 248, 0.24);
           border-radius: 20px;
-          padding: 3rem;
+          padding: 2.7rem;
           backdrop-filter: blur(10px);
+          overflow: hidden;
         }
 
         .contact-grid {
           display: grid;
-          grid-template-columns: 1.25fr 0.75fr;
+          grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
           gap: 2rem;
           align-items: center;
         }
@@ -836,36 +870,43 @@ Error generating stack: `+e.message+`
         .contact-note {
           color: var(--text-secondary);
           line-height: 1.75;
-          margin-top: 1rem;
           margin-bottom: 2rem;
+          max-width: 660px;
+          font-size: 1.05rem;
         }
 
         .availability-card {
           background: rgba(2, 6, 23, 0.62);
           border: 1px solid var(--border-color);
           border-radius: 14px;
-          padding: 1.4rem;
+          padding: 1.25rem;
         }
 
         .availability-item {
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          align-items: start;
+          gap: 0.75rem;
           color: var(--text-secondary);
-          margin-bottom: 1rem;
+          padding: 0.9rem 0;
+          border-bottom: 1px solid rgba(51, 65, 85, 0.55);
+          line-height: 1.55;
+        }
+
+        .availability-item:first-child {
+          padding-top: 0;
         }
 
         .availability-item:last-child {
-          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
         }
 
-        .availability-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #22c55e;
-          box-shadow: 0 0 14px var(--success-glow);
+        .availability-icon {
+          color: var(--accent-primary);
+          margin-top: 0.15rem;
           flex-shrink: 0;
+          filter: drop-shadow(0 0 8px var(--success-glow));
         }
 
         .footer {
@@ -920,17 +961,64 @@ Error generating stack: `+e.message+`
           50% { transform: translateY(-10px); }
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1120px) {
           .nav-links {
             gap: 1rem;
           }
+
+          .nav-links a {
+            font-size: 0.85rem;
+          }
+
+          .hero-container {
+            grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
+            gap: 2rem;
+          }
+
+          .hero h1 {
+            font-size: clamp(3rem, 5vw, 4rem);
+          }
+
+          .hero-subtitle {
+            font-size: 1.08rem;
+          }
+
+          .hero-image-wrapper {
+            width: 280px;
+          }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 980px) {
+          .nav-links {
+            display: none;
+          }
+
+          .hero {
+            min-height: auto;
+            padding-top: 7.5rem;
+          }
+
           .hero-container {
-            flex-direction: column-reverse;
+            grid-template-columns: 1fr;
             text-align: center;
-            gap: 2rem;
+            gap: 2.5rem;
+          }
+
+          .hero-image-container {
+            order: -1;
+          }
+
+          .hero h1 {
+            white-space: normal;
+          }
+
+          .hero-subtitle {
+            white-space: normal;
+          }
+
+          .hero-label {
+            white-space: normal;
+            justify-content: center;
           }
 
           .offerings-row,
@@ -938,60 +1026,89 @@ Error generating stack: `+e.message+`
             justify-content: center;
           }
 
+          .hero-description {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
           .hero-stats {
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 2.4rem;
             justify-content: center;
           }
 
-          .badge-1 { right: -5%; }
-          .badge-2 { left: -5%; }
-        }
+          .badge-1 { right: -4%; }
+          .badge-2 { left: -4%; }
 
-        @media (max-width: 968px) {
           .project-content-grid,
           .resume-layout,
           .contact-grid {
             grid-template-columns: 1fr;
             gap: 2rem;
           }
-
-          .nav-links {
-            display: none;
-          }
         }
 
         @media (max-width: 768px) {
+          :root {
+            --container-width: 100%;
+          }
+
+          .nav-content,
+          .hero-container,
           .section {
-            padding: 5rem 1.25rem;
+            width: min(100% - 2rem, 100%);
+          }
+
+          .brand-name {
+            font-size: 0.98rem;
+          }
+
+          .section {
+            padding: 5rem 0;
           }
 
           .hero {
-            padding-left: 1.25rem;
-            padding-right: 1.25rem;
+            padding-top: 7rem;
+            padding-bottom: 4rem;
           }
 
           .hero h1 {
-            font-size: 2.65rem;
+            font-size: 2.75rem;
+            letter-spacing: -0.045em;
+          }
+
+          .hero-subtitle {
+            font-size: 1.02rem;
+          }
+
+          .hero-description {
+            font-size: 1rem;
           }
 
           .hero-image-wrapper {
-            width: 250px;
-            height: 250px;
+            width: 240px;
           }
 
           .hero-stats {
             flex-direction: column;
             gap: 1.4rem;
             align-items: center;
+            text-align: center;
           }
 
           .project-card,
-          .contact-card {
-            padding: 2rem;
+          .contact-card,
+          .stack-category,
+          .service-card {
+            padding: 1.6rem;
+          }
+
+          .side-card {
+            padding: 1.6rem;
           }
 
           .project-top-row {
             flex-direction: column;
+            gap: 1.2rem;
           }
 
           .project-impact {
@@ -1000,6 +1117,7 @@ Error generating stack: `+e.message+`
 
           .hero-cta {
             flex-direction: column;
+            width: 100%;
           }
 
           .cta-button {
@@ -1008,6 +1126,32 @@ Error generating stack: `+e.message+`
 
           .floating-badge {
             display: none;
+          }
+
+          .scroll-indicator {
+            display: none;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .hero h1 {
+            font-size: 2.35rem;
+          }
+
+          .hero-label {
+            font-size: 0.68rem;
+          }
+
+          .section-title {
+            font-size: 2rem;
+          }
+
+          .project-card,
+          .contact-card,
+          .stack-category,
+          .service-card,
+          .side-card {
+            padding: 1.25rem;
           }
         }
 
@@ -1020,4 +1164,4 @@ Error generating stack: `+e.message+`
             scroll-behavior: auto !important;
           }
         }
-      `}),(0,k.jsx)(`div`,{className:`bg-grid`}),(0,k.jsx)(`nav`,{"aria-label":`Primary navigation`,children:(0,k.jsxs)(`div`,{className:`nav-content`,children:[(0,k.jsxs)(`div`,{className:`logo`,children:[`<JM`,(0,k.jsx)(`span`,{children:`.data`}),`/>`]}),(0,k.jsx)(`ul`,{className:`nav-links`,children:o.map(t=>(0,k.jsx)(`li`,{children:(0,k.jsx)(`a`,{href:`#${t.id}`,className:e===t.id?`active-nav-link`:``,onClick:e=>{e.preventDefault(),a(t.id)},children:t.label})},t.id))})]})}),(0,k.jsxs)(`section`,{id:`hero`,className:`hero`,children:[(0,k.jsx)(`div`,{className:`hero-glow`}),(0,k.jsxs)(`div`,{className:`hero-container`,children:[(0,k.jsxs)(`div`,{className:`hero-content`,children:[(0,k.jsxs)(`div`,{className:`hero-label`,children:[(0,k.jsx)(`span`,{}),` OPEN FOR DATA, ANALYTICS & AUTOMATION ROLES`]}),(0,k.jsx)(`h1`,{children:`Jackson Mwangi.`}),(0,k.jsxs)(`div`,{className:`hero-subtitle`,children:[`Operational Analytics Engineer `,(0,k.jsx)(`span`,{children:`|`}),` Data Automation `,(0,k.jsx)(`span`,{children:`|`}),` Cloud Data Systems`]}),(0,k.jsxs)(`div`,{className:`offerings-row`,children:[(0,k.jsx)(`span`,{className:`offering-tag`,children:`Cloud Architecture`}),(0,k.jsx)(`span`,{className:`offering-tag`,children:`Pipeline Automation`}),(0,k.jsx)(`span`,{className:`offering-tag`,children:`Advanced Analytics`}),(0,k.jsx)(`span`,{className:`offering-tag`,children:`Process Intelligence`})]}),(0,k.jsx)(`p`,{className:`hero-description`,children:`I solve expensive business problems with data systems. My work turns messy operational workflows into automated, reliable, decision-ready pipelines across fintech, medtech, and e-commerce environments.`}),(0,k.jsxs)(`div`,{className:`hero-stats`,"aria-label":`Professional highlights`,children:[(0,k.jsxs)(`div`,{className:`stat-item`,children:[(0,k.jsx)(`div`,{className:`stat-number`,children:`5+`}),(0,k.jsx)(`div`,{className:`stat-label`,children:`Years Experience`})]}),(0,k.jsxs)(`div`,{className:`stat-item`,children:[(0,k.jsx)(`div`,{className:`stat-number`,children:`90%`}),(0,k.jsx)(`div`,{className:`stat-label`,children:`Error Reduction`})]}),(0,k.jsxs)(`div`,{className:`stat-item`,children:[(0,k.jsx)(`div`,{className:`stat-number`,children:`3+`}),(0,k.jsx)(`div`,{className:`stat-label`,children:`Markets Supported`})]})]}),(0,k.jsxs)(`div`,{className:`hero-cta`,children:[(0,k.jsxs)(`a`,{href:`#projects`,onClick:e=>{e.preventDefault(),a(`projects`)},className:`cta-button cta-primary`,children:[`View My Work `,(0,k.jsx)(ie,{size:18})]}),(0,k.jsxs)(`a`,{href:`https://www.linkedin.com/in/waraga/`,target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(Ae,{size:18}),` LinkedIn`]}),(0,k.jsxs)(`a`,{href:`https://github.com/MwangiWaraga/`,target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(je,{size:18}),` GitHub`]})]})]}),(0,k.jsx)(`div`,{className:`hero-image-container`,children:(0,k.jsxs)(`div`,{className:`hero-image-wrapper`,children:[(0,k.jsx)(`img`,{src:i(`profile.jpg`),alt:`Jackson Mwangi`,className:`hero-image`}),(0,k.jsxs)(`div`,{className:`floating-badge badge-1`,children:[(0,k.jsx)(E,{size:16,color:`var(--accent-primary)`}),` GCP / BigQuery`]}),(0,k.jsxs)(`div`,{className:`floating-badge badge-2`,children:[(0,k.jsx)(he,{size:16,color:`var(--accent-primary)`}),` Process Automation`]})]})})]}),(0,k.jsxs)(`button`,{className:`scroll-indicator`,onClick:()=>a(`services`),"aria-label":`Scroll to what I do section`,children:[(0,k.jsx)(`span`,{style:{fontSize:`0.75rem`,letterSpacing:`0.1em`,fontFamily:`Fira Code`},children:`SCROLL`}),(0,k.jsx)(le,{size:20})]})]}),(0,k.jsxs)(`section`,{id:`services`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.services?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`01. WHAT I DO`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`I Build Systems That Remove Bottlenecks`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`My strongest value is not just using tools. It is identifying operational pain, designing the right data workflow, and shipping systems that save time, reduce errors, and improve decisions.`})]}),(0,k.jsx)(`div`,{className:`stack-grid`,children:s.map((e,t)=>{let r=e.icon;return(0,k.jsxs)(`div`,{className:`service-card ${n.services?`visible`:``}`,style:{transitionDelay:`${t*.15}s`},children:[(0,k.jsx)(`div`,{className:`stack-icon`,children:(0,k.jsx)(r,{size:24})}),(0,k.jsx)(`h3`,{children:e.title}),(0,k.jsx)(`p`,{className:`service-description`,children:e.description}),(0,k.jsx)(`div`,{className:`stack-items`,children:e.points.map(e=>(0,k.jsx)(`span`,{className:`stack-item`,children:e},e))})]},e.title)})})]}),(0,k.jsxs)(`section`,{id:`projects`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.projects?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`02. FEATURED WORK`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Business Problems Solved With Data Systems`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`These projects show the pattern of my work: diagnose the bottleneck, automate the workflow, serve reliable data, and make the result measurable.`})]}),(0,k.jsx)(`div`,{className:`projects-grid`,children:[{id:1,company:`Watu Credit`,title:`WhatsApp FO Verifier Microservice`,type:`Cloud Microservice / Internal System`,challenge:`Verifying Field Officers via WhatsApp required instant responses, but direct BigQuery lookups introduced latency, timeout risk, and unnecessary query costs.`,solution:`Built a FastAPI microservice deployed on GCP Compute Engine with Redis as the low-latency serving layer. Automated hourly BigQuery-to-Redis syncing using Python, uv, Docker, and dual-key indexing by phone number and user ID.`,role:`Designed the service architecture, built the API layer, automated the cache refresh workflow, and packaged the service for repeatable deployment.`,businessValue:`Reduced verification friction, removed dependence on live analytical queries, and created a reusable pattern for fast operational lookups across markets.`,impact:[{metric:`< 5ms`,label:`Lookup latency`},{metric:`$0`,label:`Real-time BQ cost`},{metric:`3+`,label:`Markets supported`}],tech:[`GCP`,`FastAPI`,`Redis`,`BigQuery`,`Docker`,`Python`],linkText:`View Case Study`,link:`https://github.com/MwangiWaraga`},{id:2,company:`Watu Credit`,title:`Automated Validation Pipelines & Escalation Systems`,type:`Operations Automation / Analytics Pipeline`,challenge:`Critical turnaround times were delayed by manual extraction, spreadsheet errors, and disconnected operational metrics.`,solution:`Engineered an automated workflow using Python, BigQuery, and Google Apps Script. Replaced manual imports with parameterized SQL scripts and built a FastAPI-based WhatsApp escalation chatbot.`,role:`Mapped the manual process, automated recurring validation tasks, built escalation logic, and improved visibility into operational bottlenecks.`,businessValue:`Improved speed, reduced avoidable errors, and helped teams act on SLA risks before they became larger operational delays.`,impact:[{metric:`90%`,label:`Error reduction`},{metric:`Hours → Mins`,label:`Turnaround time`},{metric:`Real-time`,label:`SLA visibility`}],tech:[`Python`,`BigQuery`,`Google Apps Script`,`FastAPI`,`SQL`],linkText:`View Pipeline Notes`,link:`https://github.com/MwangiWaraga`},{id:3,company:`mPharma`,title:`Inventory Audit Automation & Forecasting`,type:`Supply Chain Analytics / Forecasting`,challenge:`Stock variances and inaccurate supply/demand forecasts were disrupting planning across a complex medtech supply chain.`,solution:`Collated historical sales data, built SQL-based supply and demand models, automated inventory audit workflows using Python, and created self-service Metabase dashboards.`,role:`Owned data preparation, variance diagnosis, dashboarding, and recurring audit reporting for procurement and operations stakeholders.`,businessValue:`Improved inventory decision-making by making stock movements, variances, and demand signals easier to detect and explain.`,impact:[{metric:`+20%`,label:`Forecast accuracy`},{metric:`-15%`,label:`Stock variance`},{metric:`10 hrs/wk`,label:`Time saved`}],tech:[`SQL`,`Python`,`Metabase`,`Data Modeling`,`Forecasting`],linkText:`View Case Study`,link:`https://github.com/MwangiWaraga`},{id:4,company:`Jakan Enterprise`,title:`E-Commerce Data Architecture`,type:`Data Architecture / Business Intelligence`,challenge:`Managing dropshipping inventory, ad spend, and sales data across multiple storefronts lacked centralized visibility.`,solution:`Initiated an enterprise data architecture project with ETL pipelines for multi-channel storefront data, BigQuery as the warehouse, dbt for transformations, and Metabase for reporting.`,role:`Designed the analytics foundation, defined the core reporting model, and connected operational metrics into a single reporting layer.`,businessValue:`Created a scalable foundation for monitoring product performance, ad spend efficiency, and multi-channel sales activity.`,impact:[{metric:`Unified`,label:`Multi-channel data`},{metric:`Automated`,label:`Analytics foundation`},{metric:`Real-time`,label:`Ad-spend tracking`}],tech:[`BigQuery`,`dbt`,`Metabase`,`ETL`,`Analytics Engineering`],linkText:`View Repository`,link:`https://github.com/MwangiWaraga`}].map((e,t)=>(0,k.jsxs)(`article`,{className:`project-card ${n.projects?`visible`:``}`,style:{transitionDelay:`${t*.1}s`},children:[(0,k.jsxs)(`div`,{className:`project-top-row`,children:[(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`project-company`,children:e.company}),(0,k.jsx)(`h3`,{className:`project-title`,children:e.title}),(0,k.jsx)(`span`,{className:`project-type`,children:e.type})]}),(0,k.jsxs)(`a`,{href:e.link,className:`project-link`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`Open ${e.title} project link`,children:[e.linkText,` `,(0,k.jsx)(de,{size:16})]})]}),(0,k.jsxs)(`div`,{className:`project-content-grid`,children:[(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`project-section-label`,children:`The Challenge`}),(0,k.jsx)(`div`,{className:`project-section-content`,children:e.challenge}),(0,k.jsx)(`div`,{className:`project-section-label`,children:`The Solution`}),(0,k.jsx)(`div`,{className:`project-section-content`,children:e.solution}),(0,k.jsx)(`div`,{className:`project-section-label`,children:`My Role`}),(0,k.jsx)(`div`,{className:`project-section-content`,children:e.role})]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`project-section-label`,children:`Measurable Impact`}),(0,k.jsx)(`div`,{className:`project-impact`,children:e.impact.map(t=>(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`impact-metric`,children:t.metric}),(0,k.jsx)(`div`,{className:`impact-label`,children:t.label})]},`${e.id}-${t.label}`))}),(0,k.jsxs)(`div`,{className:`proof-card`,children:[(0,k.jsx)(`strong`,{children:`Business Value`}),(0,k.jsx)(`p`,{children:e.businessValue})]})]})]}),(0,k.jsx)(`div`,{className:`project-tech`,children:e.tech.map(e=>(0,k.jsx)(`span`,{className:`tech-tag`,children:e},e))})]},e.id))})]}),(0,k.jsxs)(`section`,{id:`stack`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.stack?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`03. TECHNICAL STACK`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Tools I Use To Ship The Work`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`My stack combines analytics, data engineering, cloud infrastructure, and business operations — useful for roles that need both technical execution and process understanding.`})]}),(0,k.jsx)(`div`,{className:`stack-grid`,children:Object.entries({"Data & Cloud Engineering":[`GCP Compute Engine`,`Cloud Scheduler`,`SQL`,`BigQuery`,`PostgreSQL`,`Python`,`Redis`,`dbt`,`Metabase`],"Architecture & Automation":[`FastAPI`,`Microservices`,`Docker`,`Docker Compose`,`uv Python Packaging`,`Google Apps Script`,`REST APIs`],"Business Operations":[`Variance Analysis`,`Root Cause Analysis`,`Financial Reconciliation`,`Demand Forecasting`,`SLA Monitoring`,`Inventory Audit`]}).map(([e,t],r)=>(0,k.jsxs)(`div`,{className:`stack-category ${n.stack?`visible`:``}`,style:{transitionDelay:`${r*.15}s`},children:[(0,k.jsxs)(`div`,{className:`stack-icon`,children:[e===`Data & Cloud Engineering`&&(0,k.jsx)(E,{size:24}),e===`Architecture & Automation`&&(0,k.jsx)(D,{size:24}),e===`Business Operations`&&(0,k.jsx)(se,{size:24})]}),(0,k.jsx)(`h3`,{children:e}),(0,k.jsx)(`div`,{className:`stack-items`,children:t.map(e=>(0,k.jsx)(`span`,{className:`stack-item`,children:e},e))})]},e))})]}),(0,k.jsxs)(`section`,{id:`experience`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.experience?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`04. HISTORY`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Experience & Credentials`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`My background combines finance, operations, analytics, and engineering — giving me a practical view of how data systems should support real teams.`})]}),(0,k.jsxs)(`div`,{className:`resume-layout`,children:[(0,k.jsx)(`div`,{className:`experience-timeline`,children:[{role:`Process Analyst`,company:`Watu Credit`,period:`Jan 2025 – Present`,description:`Bridging the gap between infrastructure and daily workflows by building cloud-native microservices, BigQuery pipelines, and automation systems that reduce operational bottlenecks.`,highlight:`Recognized as Employee of the Month in Jan 2026 for driving operational automation.`,location:`Nairobi, Kenya`},{role:`Data Analyst`,company:`mPharma`,period:`Jun 2024 – Jan 2025`,description:`Led monthly stock-take reconciliations, built supply/demand models, and partnered with procurement teams to diagnose the root causes of supply chain discrepancies.`,location:`Nairobi, Kenya`},{role:`Accountant`,company:`Cyntiac Digital Solutions`,period:`Mar 2019 – Nov 2023`,description:`Conducted monthly variance analysis, diagnosed cost and process bottlenecks, and presented recommendations for stronger financial and operational controls.`,highlight:`Automated financial reporting in Advanced Excel, cutting monthly reporting cycle time by 60%.`,location:`Nairobi, Kenya`}].map((e,t)=>(0,k.jsxs)(`div`,{className:`experience-item ${n.experience?`visible`:``}`,style:{transitionDelay:`${t*.15}s`},children:[(0,k.jsx)(`div`,{className:`experience-period`,children:e.period}),(0,k.jsx)(`div`,{className:`experience-role`,children:e.role}),(0,k.jsxs)(`div`,{className:`experience-company`,children:[e.company,` • `,e.location]}),(0,k.jsx)(`p`,{className:`experience-description`,children:e.description}),e.highlight&&(0,k.jsxs)(`div`,{className:`experience-highlight`,children:[(0,k.jsx)(ae,{size:18,className:`highlight-icon`}),(0,k.jsx)(`div`,{children:e.highlight})]})]},`${e.company}-${e.role}`))}),(0,k.jsxs)(`div`,{className:`side-cards-container`,children:[(0,k.jsxs)(`div`,{className:`side-card`,children:[(0,k.jsxs)(`div`,{className:`side-card-header`,children:[(0,k.jsx)(pe,{size:20,className:`side-card-icon`}),` Education`]}),(0,k.jsx)(`ul`,{className:`side-list`,children:[{title:`BSc Economics & Statistics`,subtitle:`University of Nairobi`},{title:`CPA Part II Candidate`,subtitle:`NIBS College`}].map(e=>(0,k.jsxs)(`li`,{children:[(0,k.jsx)(ue,{size:16,className:`list-bullet`}),(0,k.jsxs)(`div`,{className:`list-content`,children:[(0,k.jsx)(`strong`,{children:e.title}),(0,k.jsx)(`span`,{children:e.subtitle})]})]},e.title))})]}),(0,k.jsxs)(`div`,{className:`side-card`,children:[(0,k.jsxs)(`div`,{className:`side-card-header`,children:[(0,k.jsx)(oe,{size:20,className:`side-card-icon`}),` Verified Certifications`]}),(0,k.jsx)(`ul`,{className:`side-list`,children:[{title:`Data Engineer Associate`,issuer:`DataCamp`,link:`https://www.datacamp.com/certificate/DEA0013616783195`},{title:`Data Scientist Associate`,issuer:`DataCamp`,link:`https://www.datacamp.com/certificate/DSA0015394234622`},{title:`Data Analyst`,issuer:`DataCamp`,link:`https://www.datacamp.com/certificate/DA0022025807264`},{title:`BigQuery for Data Analysts`,issuer:`Google Cloud`,link:`https://www.skills.google/public_profiles/9d35c423-e509-46ae-bd0f-0af045ee1f40`}].map(e=>(0,k.jsxs)(`li`,{children:[(0,k.jsx)(ue,{size:16,className:`list-bullet`}),(0,k.jsxs)(`div`,{className:`list-content`,children:[(0,k.jsx)(`strong`,{children:(0,k.jsxs)(`a`,{href:e.link,target:`_blank`,rel:`noopener noreferrer`,className:`cert-link`,children:[e.title,` `,(0,k.jsx)(de,{size:12})]})}),(0,k.jsx)(`span`,{children:e.issuer})]})]},e.title))})]})]})]})]}),(0,k.jsxs)(`section`,{id:`contact`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.contact?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`05. CONTACT`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Let’s Build Better Data Systems`})]}),(0,k.jsx)(`div`,{className:`contact-card`,children:(0,k.jsxs)(`div`,{className:`contact-grid`,children:[(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`p`,{className:`contact-note`,children:`I am open to Data Analyst, Analytics Engineer, Data Engineer, and Operations Automation roles — especially where data, cloud systems, and business workflows meet.`}),(0,k.jsxs)(`div`,{className:`hero-cta`,children:[(0,k.jsxs)(`a`,{href:`mailto:jackmwangu@gmail.com`,className:`cta-button cta-primary`,children:[(0,k.jsx)(me,{size:18}),` Email Me`]}),(0,k.jsxs)(`a`,{href:i(`Jackson-Mwangi-Resume.pdf`),target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(fe,{size:18}),` Download Resume`]}),(0,k.jsxs)(`a`,{href:`https://github.com/MwangiWaraga/`,target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(je,{size:18}),` View GitHub`]})]})]}),(0,k.jsxs)(`div`,{className:`availability-card`,"aria-label":`Availability summary`,children:[(0,k.jsxs)(`div`,{className:`availability-item`,children:[(0,k.jsx)(`span`,{className:`availability-dot`}),` Based in Nairobi, Kenya`]}),(0,k.jsxs)(`div`,{className:`availability-item`,children:[(0,k.jsx)(`span`,{className:`availability-dot`}),` Open to data and automation roles`]}),(0,k.jsxs)(`div`,{className:`availability-item`,children:[(0,k.jsx)(`span`,{className:`availability-dot`}),` Strong fit for fintech, operations, and supply-chain teams`]})]})]})})]}),(0,k.jsxs)(`footer`,{className:`footer`,children:[(0,k.jsxs)(`p`,{children:[`© `,new Date().getFullYear(),` Jackson Mwangi.`]}),(0,k.jsxs)(`div`,{className:`footer-social`,children:[(0,k.jsx)(`a`,{href:`https://www.linkedin.com/in/waraga/`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`LinkedIn profile`,children:(0,k.jsx)(Ae,{size:20})}),(0,k.jsx)(`a`,{href:`https://github.com/MwangiWaraga/`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`GitHub profile`,children:(0,k.jsx)(je,{size:20})}),(0,k.jsx)(`a`,{href:`mailto:jackmwangu@gmail.com`,"aria-label":`Send email`,children:(0,k.jsx)(me,{size:20})})]})]})]})}(0,v.createRoot)(document.getElementById(`root`)).render((0,k.jsx)(_.StrictMode,{children:(0,k.jsx)(Ne,{})}));
+      `}),(0,k.jsx)(`div`,{className:`bg-grid`}),(0,k.jsx)(`nav`,{"aria-label":`Primary navigation`,children:(0,k.jsxs)(`div`,{className:`nav-content`,children:[(0,k.jsx)(`a`,{href:`#hero`,className:`brand-name`,onClick:e=>{e.preventDefault(),a(`hero`)},children:`Jackson Mwangi`}),(0,k.jsx)(`ul`,{className:`nav-links`,children:o.map(t=>(0,k.jsx)(`li`,{children:(0,k.jsx)(`a`,{href:`#${t.id}`,className:e===t.id?`active-nav-link`:``,onClick:e=>{e.preventDefault(),a(t.id)},children:t.label})},t.id))})]})}),(0,k.jsxs)(`section`,{id:`hero`,className:`hero`,children:[(0,k.jsx)(`div`,{className:`hero-glow`}),(0,k.jsxs)(`div`,{className:`hero-container`,children:[(0,k.jsxs)(`div`,{className:`hero-content`,children:[(0,k.jsxs)(`div`,{className:`hero-label`,children:[(0,k.jsx)(`span`,{}),` OPEN FOR DATA, ANALYTICS & AUTOMATION ROLES`]}),(0,k.jsx)(`h1`,{children:`Jackson Mwangi`}),(0,k.jsxs)(`div`,{className:`hero-subtitle`,children:[`Data & Operations Analyst `,(0,k.jsx)(`span`,{children:`|`}),` Analytics Engineer`]}),(0,k.jsxs)(`div`,{className:`offerings-row`,children:[(0,k.jsx)(`span`,{className:`offering-tag`,children:`Cloud Architecture`}),(0,k.jsx)(`span`,{className:`offering-tag`,children:`Pipeline Automation`}),(0,k.jsx)(`span`,{className:`offering-tag`,children:`Advanced Analytics`}),(0,k.jsx)(`span`,{className:`offering-tag`,children:`Process Intelligence`})]}),(0,k.jsx)(`p`,{className:`hero-description`,children:`I solve expensive business problems with data systems. My work turns messy operational workflows into automated, reliable, decision-ready pipelines across fintech, medtech, and e-commerce environments.`}),(0,k.jsxs)(`div`,{className:`hero-stats`,"aria-label":`Professional highlights`,children:[(0,k.jsxs)(`div`,{className:`stat-item`,children:[(0,k.jsx)(`div`,{className:`stat-number`,children:`5+`}),(0,k.jsx)(`div`,{className:`stat-label`,children:`Years Experience`})]}),(0,k.jsxs)(`div`,{className:`stat-item`,children:[(0,k.jsx)(`div`,{className:`stat-number`,children:`90%`}),(0,k.jsx)(`div`,{className:`stat-label`,children:`Error Reduction`})]}),(0,k.jsxs)(`div`,{className:`stat-item`,children:[(0,k.jsx)(`div`,{className:`stat-number`,children:`3+`}),(0,k.jsx)(`div`,{className:`stat-label`,children:`Markets Supported`})]})]}),(0,k.jsxs)(`div`,{className:`hero-cta`,children:[(0,k.jsxs)(`a`,{href:`#projects`,onClick:e=>{e.preventDefault(),a(`projects`)},className:`cta-button cta-primary`,children:[`View My Work `,(0,k.jsx)(ie,{size:18})]}),(0,k.jsxs)(`a`,{href:`https://www.linkedin.com/in/waraga/`,target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(Ae,{size:18}),` LinkedIn`]}),(0,k.jsxs)(`a`,{href:`https://github.com/MwangiWaraga/`,target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(je,{size:18}),` GitHub`]})]})]}),(0,k.jsx)(`div`,{className:`hero-image-container`,children:(0,k.jsxs)(`div`,{className:`hero-image-wrapper`,children:[(0,k.jsx)(`img`,{src:i(`profile.jpg`),alt:`Jackson Mwangi`,className:`hero-image`}),(0,k.jsxs)(`div`,{className:`floating-badge badge-1`,children:[(0,k.jsx)(E,{size:16,color:`var(--accent-primary)`}),` GCP / BigQuery`]}),(0,k.jsxs)(`div`,{className:`floating-badge badge-2`,children:[(0,k.jsx)(he,{size:16,color:`var(--accent-primary)`}),` Process Automation`]})]})})]}),(0,k.jsxs)(`button`,{className:`scroll-indicator`,onClick:()=>a(`services`),"aria-label":`Scroll to what I do section`,children:[(0,k.jsx)(`span`,{style:{fontSize:`0.75rem`,letterSpacing:`0.1em`,fontFamily:`Fira Code`},children:`SCROLL`}),(0,k.jsx)(le,{size:20})]})]}),(0,k.jsxs)(`section`,{id:`services`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.services?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`01. WHAT I DO`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`I Build Systems That Remove Bottlenecks`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`My strongest value is not just using tools. It is identifying operational pain, designing the right data workflow, and shipping systems that save time, reduce errors, and improve decisions.`})]}),(0,k.jsx)(`div`,{className:`stack-grid`,children:s.map((e,t)=>{let r=e.icon;return(0,k.jsxs)(`div`,{className:`service-card ${n.services?`visible`:``}`,style:{transitionDelay:`${t*.15}s`},children:[(0,k.jsx)(`div`,{className:`stack-icon`,children:(0,k.jsx)(r,{size:24})}),(0,k.jsx)(`h3`,{children:e.title}),(0,k.jsx)(`p`,{className:`service-description`,children:e.description}),(0,k.jsx)(`div`,{className:`stack-items`,children:e.points.map(e=>(0,k.jsx)(`span`,{className:`stack-item`,children:e},e))})]},e.title)})})]}),(0,k.jsxs)(`section`,{id:`projects`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.projects?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`02. FEATURED WORK`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Business Problems Solved With Data Systems`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`These projects show the pattern of my work: diagnose the bottleneck, automate the workflow, serve reliable data, and make the result measurable.`})]}),(0,k.jsx)(`div`,{className:`projects-grid`,children:[{id:1,company:`Watu Credit`,title:`WhatsApp FO Verifier Microservice`,type:`Cloud Microservice / Internal System`,challenge:`Verifying Field Officers via WhatsApp required instant responses, but direct BigQuery lookups introduced latency, timeout risk, and unnecessary query costs.`,solution:`Built a FastAPI microservice deployed on GCP Compute Engine with Redis as the low-latency serving layer. Automated hourly BigQuery-to-Redis syncing using Python, uv, Docker, and dual-key indexing by phone number and user ID.`,role:`Designed the service architecture, built the API layer, automated the cache refresh workflow, and packaged the service for repeatable deployment.`,businessValue:`Reduced verification friction, removed dependence on live analytical queries, and created a reusable pattern for fast operational lookups across markets.`,impact:[{metric:`< 5ms`,label:`Lookup latency`},{metric:`$0`,label:`Real-time BQ cost`},{metric:`3+`,label:`Markets supported`}],tech:[`GCP`,`FastAPI`,`Redis`,`BigQuery`,`Docker`,`Python`],linkText:`View Case Study`,link:`https://github.com/MwangiWaraga`},{id:2,company:`Watu Credit`,title:`Automated Validation Pipelines & Escalation Systems`,type:`Operations Automation / Analytics Pipeline`,challenge:`Critical turnaround times were delayed by manual extraction, spreadsheet errors, and disconnected operational metrics.`,solution:`Engineered an automated workflow using Python, BigQuery, and Google Apps Script. Replaced manual imports with parameterized SQL scripts and built a FastAPI-based WhatsApp escalation chatbot.`,role:`Mapped the manual process, automated recurring validation tasks, built escalation logic, and improved visibility into operational bottlenecks.`,businessValue:`Improved speed, reduced avoidable errors, and helped teams act on SLA risks before they became larger operational delays.`,impact:[{metric:`90%`,label:`Error reduction`},{metric:`Hours → Mins`,label:`Turnaround time`},{metric:`Real-time`,label:`SLA visibility`}],tech:[`Python`,`BigQuery`,`Google Apps Script`,`FastAPI`,`SQL`],linkText:`View Pipeline Notes`,link:`https://github.com/MwangiWaraga`},{id:3,company:`mPharma`,title:`Inventory Audit Automation & Forecasting`,type:`Supply Chain Analytics / Forecasting`,challenge:`Stock variances and inaccurate supply/demand forecasts were disrupting planning across a complex medtech supply chain.`,solution:`Collated historical sales data, built SQL-based supply and demand models, automated inventory audit workflows using Python, and created self-service Metabase dashboards.`,role:`Owned data preparation, variance diagnosis, dashboarding, and recurring audit reporting for procurement and operations stakeholders.`,businessValue:`Improved inventory decision-making by making stock movements, variances, and demand signals easier to detect and explain.`,impact:[{metric:`+20%`,label:`Forecast accuracy`},{metric:`-15%`,label:`Stock variance`},{metric:`10 hrs/wk`,label:`Time saved`}],tech:[`SQL`,`Python`,`Metabase`,`Data Modeling`,`Forecasting`],linkText:`View Case Study`,link:`https://github.com/MwangiWaraga`},{id:4,company:`Jakan Enterprise`,title:`E-Commerce Data Architecture`,type:`Data Architecture / Business Intelligence`,challenge:`Managing dropshipping inventory, ad spend, and sales data across multiple storefronts lacked centralized visibility.`,solution:`Initiated an enterprise data architecture project with ETL pipelines for multi-channel storefront data, BigQuery as the warehouse, dbt for transformations, and Metabase for reporting.`,role:`Designed the analytics foundation, defined the core reporting model, and connected operational metrics into a single reporting layer.`,businessValue:`Created a scalable foundation for monitoring product performance, ad spend efficiency, and multi-channel sales activity.`,impact:[{metric:`Unified`,label:`Multi-channel data`},{metric:`Automated`,label:`Analytics foundation`},{metric:`Real-time`,label:`Ad-spend tracking`}],tech:[`BigQuery`,`dbt`,`Metabase`,`ETL`,`Analytics Engineering`],linkText:`View Repository`,link:`https://github.com/MwangiWaraga`}].map((e,t)=>(0,k.jsxs)(`article`,{className:`project-card ${n.projects?`visible`:``}`,style:{transitionDelay:`${t*.1}s`},children:[(0,k.jsxs)(`div`,{className:`project-top-row`,children:[(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`project-company`,children:e.company}),(0,k.jsx)(`h3`,{className:`project-title`,children:e.title}),(0,k.jsx)(`span`,{className:`project-type`,children:e.type})]}),(0,k.jsxs)(`a`,{href:e.link,className:`project-link`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`Open ${e.title} project link`,children:[e.linkText,` `,(0,k.jsx)(de,{size:16})]})]}),(0,k.jsxs)(`div`,{className:`project-content-grid`,children:[(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`project-section-label`,children:`The Challenge`}),(0,k.jsx)(`div`,{className:`project-section-content`,children:e.challenge}),(0,k.jsx)(`div`,{className:`project-section-label`,children:`The Solution`}),(0,k.jsx)(`div`,{className:`project-section-content`,children:e.solution}),(0,k.jsx)(`div`,{className:`project-section-label`,children:`My Role`}),(0,k.jsx)(`div`,{className:`project-section-content`,children:e.role})]}),(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`project-section-label`,children:`Measurable Impact`}),(0,k.jsx)(`div`,{className:`project-impact`,children:e.impact.map(t=>(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`div`,{className:`impact-metric`,children:t.metric}),(0,k.jsx)(`div`,{className:`impact-label`,children:t.label})]},`${e.id}-${t.label}`))}),(0,k.jsxs)(`div`,{className:`proof-card`,children:[(0,k.jsx)(`strong`,{children:`Business Value`}),(0,k.jsx)(`p`,{children:e.businessValue})]})]})]}),(0,k.jsx)(`div`,{className:`project-tech`,children:e.tech.map(e=>(0,k.jsx)(`span`,{className:`tech-tag`,children:e},e))})]},e.id))})]}),(0,k.jsxs)(`section`,{id:`stack`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.stack?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`03. TECHNICAL STACK`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Tools I Use To Ship The Work`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`My stack combines analytics, data engineering, cloud infrastructure, and business operations — useful for roles that need both technical execution and process understanding.`})]}),(0,k.jsx)(`div`,{className:`stack-grid`,children:Object.entries({"Data & Cloud Engineering":[`GCP Compute Engine`,`Cloud Scheduler`,`SQL`,`BigQuery`,`PostgreSQL`,`Python`,`Redis`,`dbt`,`Metabase`],"Architecture & Automation":[`FastAPI`,`Microservices`,`Docker`,`Docker Compose`,`uv Python Packaging`,`Google Apps Script`,`REST APIs`],"Business Operations":[`Variance Analysis`,`Root Cause Analysis`,`Financial Reconciliation`,`Demand Forecasting`,`SLA Monitoring`,`Inventory Audit`]}).map(([e,t],r)=>(0,k.jsxs)(`div`,{className:`stack-category ${n.stack?`visible`:``}`,style:{transitionDelay:`${r*.15}s`},children:[(0,k.jsxs)(`div`,{className:`stack-icon`,children:[e===`Data & Cloud Engineering`&&(0,k.jsx)(E,{size:24}),e===`Architecture & Automation`&&(0,k.jsx)(D,{size:24}),e===`Business Operations`&&(0,k.jsx)(se,{size:24})]}),(0,k.jsx)(`h3`,{children:e}),(0,k.jsx)(`div`,{className:`stack-items`,children:t.map(e=>(0,k.jsx)(`span`,{className:`stack-item`,children:e},e))})]},e))})]}),(0,k.jsxs)(`section`,{id:`experience`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.experience?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`04. HISTORY`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Experience & Credentials`}),(0,k.jsx)(`p`,{className:`section-intro`,children:`My background combines finance, operations, analytics, and engineering — giving me a practical view of how data systems should support real teams.`})]}),(0,k.jsxs)(`div`,{className:`resume-layout`,children:[(0,k.jsx)(`div`,{className:`experience-timeline`,children:[{role:`Process Analyst`,company:`Watu Credit`,period:`Jan 2025 – Present`,description:`Bridging the gap between infrastructure and daily workflows by building cloud-native microservices, BigQuery pipelines, and automation systems that reduce operational bottlenecks.`,highlight:`Recognized as Employee of the Month in Jan 2026 for driving operational automation.`,location:`Nairobi, Kenya`},{role:`Data Analyst`,company:`mPharma`,period:`Jun 2024 – Jan 2025`,description:`Led monthly stock-take reconciliations, built supply/demand models, and partnered with procurement teams to diagnose the root causes of supply chain discrepancies.`,location:`Nairobi, Kenya`},{role:`Accountant`,company:`Cyntiac Digital Solutions`,period:`Mar 2019 – Nov 2023`,description:`Conducted monthly variance analysis, diagnosed cost and process bottlenecks, and presented recommendations for stronger financial and operational controls.`,highlight:`Automated financial reporting in Advanced Excel, cutting monthly reporting cycle time by 60%.`,location:`Nairobi, Kenya`}].map((e,t)=>(0,k.jsxs)(`div`,{className:`experience-item ${n.experience?`visible`:``}`,style:{transitionDelay:`${t*.15}s`},children:[(0,k.jsx)(`div`,{className:`experience-period`,children:e.period}),(0,k.jsx)(`div`,{className:`experience-role`,children:e.role}),(0,k.jsxs)(`div`,{className:`experience-company`,children:[e.company,` • `,e.location]}),(0,k.jsx)(`p`,{className:`experience-description`,children:e.description}),e.highlight&&(0,k.jsxs)(`div`,{className:`experience-highlight`,children:[(0,k.jsx)(ae,{size:18,className:`highlight-icon`}),(0,k.jsx)(`div`,{children:e.highlight})]})]},`${e.company}-${e.role}`))}),(0,k.jsxs)(`div`,{className:`side-cards-container`,children:[(0,k.jsxs)(`div`,{className:`side-card`,children:[(0,k.jsxs)(`div`,{className:`side-card-header`,children:[(0,k.jsx)(pe,{size:20,className:`side-card-icon`}),` Education`]}),(0,k.jsx)(`ul`,{className:`side-list`,children:[{title:`BSc Economics & Statistics`,subtitle:`University of Nairobi`},{title:`CPA Part II Candidate`,subtitle:`NIBS College`}].map(e=>(0,k.jsxs)(`li`,{children:[(0,k.jsx)(ue,{size:16,className:`list-bullet`}),(0,k.jsxs)(`div`,{className:`list-content`,children:[(0,k.jsx)(`strong`,{children:e.title}),(0,k.jsx)(`span`,{children:e.subtitle})]})]},e.title))})]}),(0,k.jsxs)(`div`,{className:`side-card`,children:[(0,k.jsxs)(`div`,{className:`side-card-header`,children:[(0,k.jsx)(oe,{size:20,className:`side-card-icon`}),` Verified Certifications`]}),(0,k.jsx)(`ul`,{className:`side-list`,children:[{title:`Data Engineer Associate`,issuer:`DataCamp`,link:`https://www.datacamp.com/certificate/DEA0013616783195`},{title:`Data Scientist Associate`,issuer:`DataCamp`,link:`https://www.datacamp.com/certificate/DSA0015394234622`},{title:`Data Analyst`,issuer:`DataCamp`,link:`https://www.datacamp.com/certificate/DA0022025807264`},{title:`BigQuery for Data Analysts`,issuer:`Google Cloud`,link:`https://www.skills.google/public_profiles/9d35c423-e509-46ae-bd0f-0af045ee1f40`}].map(e=>(0,k.jsxs)(`li`,{children:[(0,k.jsx)(ue,{size:16,className:`list-bullet`}),(0,k.jsxs)(`div`,{className:`list-content`,children:[(0,k.jsx)(`strong`,{children:(0,k.jsxs)(`a`,{href:e.link,target:`_blank`,rel:`noopener noreferrer`,className:`cert-link`,children:[e.title,` `,(0,k.jsx)(de,{size:12})]})}),(0,k.jsx)(`span`,{children:e.issuer})]})]},e.title))})]})]})]})]}),(0,k.jsxs)(`section`,{id:`contact`,className:`section`,children:[(0,k.jsxs)(`div`,{className:`section-header ${n.contact?`visible`:``}`,children:[(0,k.jsx)(`div`,{className:`section-label`,children:`05. CONTACT`}),(0,k.jsx)(`h2`,{className:`section-title`,children:`Let’s Build Better Data Systems`})]}),(0,k.jsx)(`div`,{className:`contact-card`,children:(0,k.jsxs)(`div`,{className:`contact-grid`,children:[(0,k.jsxs)(`div`,{children:[(0,k.jsx)(`p`,{className:`contact-note`,children:`I am open to Data Analyst, Analytics Engineer, Data Engineer, and Operations Automation roles — especially where data, cloud systems, and business workflows meet.`}),(0,k.jsxs)(`div`,{className:`hero-cta`,children:[(0,k.jsxs)(`a`,{href:`mailto:jackmwangu@gmail.com`,className:`cta-button cta-primary`,children:[(0,k.jsx)(me,{size:18}),` Email Me`]}),(0,k.jsxs)(`a`,{href:i(`Jackson-Mwangi-Resume.pdf`),target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(fe,{size:18}),` Download Resume`]}),(0,k.jsxs)(`a`,{href:`https://github.com/MwangiWaraga/`,target:`_blank`,rel:`noopener noreferrer`,className:`cta-button cta-secondary`,children:[(0,k.jsx)(je,{size:18}),` View GitHub`]})]})]}),(0,k.jsxs)(`div`,{className:`availability-card`,"aria-label":`Availability summary`,children:[(0,k.jsxs)(`div`,{className:`availability-item`,children:[(0,k.jsx)(ue,{size:18,className:`availability-icon`}),(0,k.jsx)(`span`,{children:`Based in Nairobi, Kenya`})]}),(0,k.jsxs)(`div`,{className:`availability-item`,children:[(0,k.jsx)(ue,{size:18,className:`availability-icon`}),(0,k.jsx)(`span`,{children:`Open to data and automation roles`})]}),(0,k.jsxs)(`div`,{className:`availability-item`,children:[(0,k.jsx)(ue,{size:18,className:`availability-icon`}),(0,k.jsx)(`span`,{children:`Strong fit for fintech, operations, and supply-chain teams`})]})]})]})})]}),(0,k.jsxs)(`footer`,{className:`footer`,children:[(0,k.jsxs)(`p`,{children:[`© `,new Date().getFullYear(),` Jackson Mwangi.`]}),(0,k.jsxs)(`div`,{className:`footer-social`,children:[(0,k.jsx)(`a`,{href:`https://www.linkedin.com/in/waraga/`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`LinkedIn profile`,children:(0,k.jsx)(Ae,{size:20})}),(0,k.jsx)(`a`,{href:`https://github.com/MwangiWaraga/`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`GitHub profile`,children:(0,k.jsx)(je,{size:20})}),(0,k.jsx)(`a`,{href:`mailto:jackmwangu@gmail.com`,"aria-label":`Send email`,children:(0,k.jsx)(me,{size:20})})]})]})]})}(0,v.createRoot)(document.getElementById(`root`)).render((0,k.jsx)(_.StrictMode,{children:(0,k.jsx)(Ne,{})}));
