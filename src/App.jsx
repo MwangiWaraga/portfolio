@@ -138,7 +138,7 @@ export default function Portfolio() {
       ],
       tech: ['GCP', 'FastAPI', 'Redis', 'BigQuery', 'Docker', 'Python'],
       linkText: 'View Case Study',
-      link: 'https://github.com/MwangiWaraga'
+      link: 'https://github.com/MwangiWaraga/whatsapp-fo-verifier-case-study'
     },
     {
       id: 2,
@@ -159,8 +159,8 @@ export default function Portfolio() {
         { metric: 'Real-time', label: 'SLA visibility' }
       ],
       tech: ['Python', 'BigQuery', 'Google Apps Script', 'FastAPI', 'SQL'],
-      linkText: 'View Pipeline Notes',
-      link: 'https://github.com/MwangiWaraga'
+      linkText: 'View Case Study',
+      link: 'https://github.com/MwangiWaraga/validation-escalation-pipelines-case-study'
     },
     {
       id: 3,
