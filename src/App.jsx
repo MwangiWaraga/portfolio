@@ -23,10 +23,6 @@ export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('hero');
   const [isVisible, setIsVisible] = useState({});
 
-  // Works well for Vite + GitHub Pages when assets are placed in /public.
-  // Example files:
-  // public/profile.jpg
-  // public/Jackson-Mwangi-Resume.pdf
   const publicAsset = (fileName) => `${import.meta.env.BASE_URL}${fileName}`;
 
   useEffect(() => {
@@ -67,21 +63,21 @@ export default function Portfolio() {
       icon: Workflow,
       title: 'Workflow Automation',
       description:
-        'I replace manual spreadsheets, imports, and follow-ups with automated data pipelines, Apps Script workflows, and API-driven systems.',
+        'I redesign repetitive reporting, validation, and follow-up workflows into scheduled, auditable systems that reduce manual effort and shorten response cycles.',
       points: ['SLA monitoring', 'Escalation bots', 'Automated reporting']
     },
     {
       icon: Cloud,
       title: 'Cloud Data Engineering',
       description:
-        'I build reliable data flows using BigQuery, Redis, Docker, FastAPI, and GCP infrastructure for operational teams that need speed and consistency.',
+        'I separate analytical storage from operational serving layers, using tools like BigQuery, Redis, FastAPI, Docker, and GCP to make data faster and more reliable.',
       points: ['ETL pipelines', 'Caching layers', 'Microservices']
     },
     {
       icon: LineChart,
       title: 'Analytics & Decision Systems',
       description:
-        'I turn raw operational data into dashboards, forecasts, variance analysis, reconciliation checks, and root-cause insights.',
+        'I build dashboards, metric logic, forecasts, and reconciliation checks that help teams detect risk, explain variance, and act before problems escalate.',
       points: ['Metabase dashboards', 'Forecasting', 'Reconciliation']
     }
   ];
@@ -131,6 +127,11 @@ export default function Portfolio() {
         'Designed the service architecture, built the API layer, automated the cache refresh workflow, and packaged the service for repeatable deployment.',
       businessValue:
         'Reduced verification friction, removed dependence on live analytical queries, and created a reusable pattern for fast operational lookups across markets.',
+      impactContext:
+        '<5ms refers to Redis lookup time at the serving layer, excluding WhatsApp provider and network latency. $0 real-time BigQuery cost means verification requests are served from Redis rather than triggering request-time BigQuery reads.',
+      visualProof:
+        'The linked case study includes a sanitized process map showing BigQuery source data, Python sync logic, Redis caching, FastAPI verification, and WhatsApp response flow.',
+      proofItems: ['Process map', 'Cache architecture', 'Measurement context'],
       impact: [
         { metric: '< 5ms', label: 'Lookup latency' },
         { metric: '$0', label: 'Real-time BQ cost' },
@@ -153,6 +154,11 @@ export default function Portfolio() {
         'Mapped the manual process, automated recurring validation tasks, built escalation logic, and improved visibility into operational bottlenecks.',
       businessValue:
         'Improved speed, reduced avoidable errors, and helped teams act on SLA risks before they became larger operational delays.',
+      impactContext:
+        'The 90% error reduction compares recurring manual reporting and validation issues before and after automated checks. Hours → minutes reflects moving repeated extraction and validation work into reusable SQL, Python, and Apps Script workflows.',
+      visualProof:
+        'The linked case study includes a sanitized process map showing source data, BigQuery logic, Python validation, Google Sheets/App Script updates, and escalation flow.',
+      proofItems: ['Process map', 'Validation flow', 'Escalation logic'],
       impact: [
         { metric: '90%', label: 'Error reduction' },
         { metric: 'Hours → Mins', label: 'Turnaround time' },
@@ -175,14 +181,19 @@ export default function Portfolio() {
         'Owned data preparation, variance diagnosis, dashboarding, and recurring audit reporting for procurement and operations stakeholders.',
       businessValue:
         'Improved inventory decision-making by making stock movements, variances, and demand signals easier to detect and explain.',
+      impactContext:
+        '+20% forecast accuracy and -15% stock variance were tracked through recurring inventory reporting, stock-take reconciliation, and forecast review cycles.',
+      visualProof:
+        'Public documentation is not added yet because the work was based on internal operational data. The project is currently summarized as a sanitized business-impact case study.',
+      proofItems: ['Forecasting model', 'Variance analysis', 'Audit workflow'],
       impact: [
         { metric: '+20%', label: 'Forecast accuracy' },
         { metric: '-15%', label: 'Stock variance' },
         { metric: '10 hrs/wk', label: 'Time saved' }
       ],
       tech: ['SQL', 'Python', 'Metabase', 'Data Modeling', 'Forecasting'],
-      linkText: 'View Case Study',
-      link: 'https://github.com/MwangiWaraga'
+      linkText: 'Case Study Coming Soon',
+      link: ''
     },
     {
       id: 4,
@@ -197,14 +208,19 @@ export default function Portfolio() {
         'Designed the analytics foundation, defined the core reporting model, and connected operational metrics into a single reporting layer.',
       businessValue:
         'Created a scalable foundation for monitoring product performance, ad spend efficiency, and multi-channel sales activity.',
+      impactContext:
+        'Impact is currently measured as an analytics foundation: unified data structure, automated reporting direction, and improved visibility across storefront, inventory, and ad-spend metrics.',
+      visualProof:
+        'A public repository can be added later when the data model, sample data, and transformation logic are ready to share safely.',
+      proofItems: ['ETL design', 'Analytics model', 'BI foundation'],
       impact: [
         { metric: 'Unified', label: 'Multi-channel data' },
         { metric: 'Automated', label: 'Analytics foundation' },
         { metric: 'Real-time', label: 'Ad-spend tracking' }
       ],
       tech: ['BigQuery', 'dbt', 'Metabase', 'ETL', 'Analytics Engineering'],
-      linkText: 'View Repository',
-      link: 'https://github.com/MwangiWaraga'
+      linkText: 'Repository Coming Soon',
+      link: ''
     }
   ];
 
@@ -871,6 +887,19 @@ export default function Portfolio() {
           color: var(--accent-primary);
         }
 
+        .project-link-muted {
+          color: var(--text-secondary);
+          border: 1px solid var(--border-color);
+          border-radius: 999px;
+          padding: 0.35rem 0.8rem;
+          cursor: default;
+          opacity: 0.72;
+        }
+
+        .project-link-muted:hover {
+          color: var(--text-secondary);
+        }
+
         .project-content-grid {
           display: grid;
           grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
@@ -954,6 +983,23 @@ export default function Portfolio() {
           color: var(--text-secondary);
           font-size: 0.92rem;
           line-height: 1.65;
+        }
+
+        .evidence-pills {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          margin-top: 0.9rem;
+        }
+
+        .evidence-pill {
+          font-family: 'Fira Code', monospace;
+          font-size: 0.72rem;
+          color: var(--accent-primary);
+          background: rgba(2, 6, 23, 0.72);
+          border: 1px solid rgba(56, 189, 248, 0.18);
+          border-radius: 999px;
+          padding: 0.35rem 0.65rem;
         }
 
         .resume-layout {
@@ -1277,10 +1323,7 @@ export default function Portfolio() {
             order: -1;
           }
 
-          .hero h1 {
-            white-space: normal;
-          }
-
+          .hero h1,
           .hero-subtitle {
             white-space: normal;
           }
@@ -1393,10 +1436,7 @@ export default function Portfolio() {
             width: 100%;
           }
 
-          .floating-badge {
-            display: none;
-          }
-
+          .floating-badge,
           .scroll-indicator {
             display: none;
           }
@@ -1574,7 +1614,7 @@ export default function Portfolio() {
           <div className="section-label">01. WHAT I DO</div>
           <h2 className="section-title">I Build Systems That Remove Bottlenecks</h2>
           <p className="section-intro">
-            My strongest value is not just using tools. It is identifying operational pain, designing the right data workflow, and shipping systems that save time, reduce errors, and improve decisions.
+            I focus on operational systems where poor data flow costs time and money: slow lookups, repeated manual checks, delayed escalations, weak metric logic, and reporting workflows that are hard to trust.
           </p>
         </div>
 
@@ -1611,7 +1651,7 @@ export default function Portfolio() {
           <div className="section-label">02. FEATURED WORK</div>
           <h2 className="section-title">Business Problems Solved With Data Systems</h2>
           <p className="section-intro">
-            These projects show the pattern of my work: diagnose the bottleneck, automate the workflow, serve reliable data, and make the result measurable.
+            These projects show the pattern of my work: diagnose the bottleneck, automate the workflow, serve reliable data, make the result measurable, and document the tradeoffs clearly.
           </p>
         </div>
 
@@ -1629,15 +1669,21 @@ export default function Portfolio() {
                   <span className="project-type">{project.type}</span>
                 </div>
 
-                <a
-                  href={project.link}
-                  className="project-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${project.title} project link`}
-                >
-                  {project.linkText} <ExternalLink size={16} />
-                </a>
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    className="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${project.title} project link`}
+                  >
+                    {project.linkText} <ExternalLink size={16} />
+                  </a>
+                ) : (
+                  <span className="project-link project-link-muted">
+                    {project.linkText}
+                  </span>
+                )}
               </div>
 
               <div className="project-content-grid">
@@ -1667,6 +1713,24 @@ export default function Portfolio() {
                   <div className="proof-card">
                     <strong>Business Value</strong>
                     <p>{project.businessValue}</p>
+                  </div>
+
+                  <div className="proof-card">
+                    <strong>How Impact Was Measured</strong>
+                    <p>{project.impactContext}</p>
+                  </div>
+
+                  <div className="proof-card">
+                    <strong>Visual Proof</strong>
+                    <p>{project.visualProof}</p>
+
+                    <div className="evidence-pills">
+                      {project.proofItems.map((item) => (
+                        <span key={`${project.id}-${item}`} className="evidence-pill">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1718,9 +1782,9 @@ export default function Portfolio() {
       <section id="experience" className="section">
         <div className={`section-header ${isVisible.experience ? 'visible' : ''}`}>
           <div className="section-label">04. HISTORY</div>
-          <h2 className="section-title">Experience & Credentials</h2>
+          <h2 className="section-title">Experience First, Credentials Second</h2>
           <p className="section-intro">
-            My background combines finance, operations, analytics, and engineering — giving me a practical view of how data systems should support real teams.
+            The work leads. My background combines finance, operations, analytics, and engineering — with certifications supporting the technical stack behind the projects.
           </p>
         </div>
 
@@ -1768,7 +1832,7 @@ export default function Portfolio() {
 
             <div className="side-card">
               <div className="side-card-header">
-                <Briefcase size={20} className="side-card-icon" /> Verified Certifications
+                <Briefcase size={20} className="side-card-icon" /> Supporting Certifications
               </div>
 
               <ul className="side-list">
