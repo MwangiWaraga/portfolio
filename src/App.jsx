@@ -35,7 +35,10 @@ export default function Portfolio() {
           }
         });
       },
-      { threshold: 0.2 }
+      {
+        threshold: 0.03,
+        rootMargin: '0px 0px -10% 0px'
+      }
     );
 
     document.querySelectorAll('section[id]').forEach((section) => {
@@ -216,7 +219,7 @@ export default function Portfolio() {
       impact: [
         { metric: 'Unified', label: 'Multi-channel data' },
         { metric: 'Automated', label: 'Analytics foundation' },
-        { metric: 'Real-time', label: 'Ad-spend tracking' }
+        { metric: 'Live', label: 'Ad-spend tracking' }
       ],
       tech: ['BigQuery', 'dbt', 'Metabase', 'ETL', 'Analytics Engineering'],
       linkText: 'Repository Coming Soon',
@@ -924,7 +927,7 @@ export default function Portfolio() {
 
         .project-impact {
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-columns: repeat(3, minmax(90px, 1fr));
           gap: 1rem;
           padding: 1.4rem;
           background: rgba(2, 6, 23, 0.74);
@@ -934,11 +937,13 @@ export default function Portfolio() {
 
         .impact-metric {
           font-family: 'Fira Code', monospace;
-          font-size: 1.3rem;
+          font-size: clamp(1.05rem, 1.6vw, 1.3rem);
           font-weight: 800;
           color: var(--text-primary);
           margin-bottom: 0.2rem;
           line-height: 1.2;
+          overflow-wrap: normal;
+          word-break: keep-all;
         }
 
         .impact-label {
@@ -964,7 +969,12 @@ export default function Portfolio() {
           padding: 0.4rem 0.8rem;
           border-radius: 6px;
         }
-
+       .project-proof-grid {
+         display: grid;
+         grid-template-columns: repeat(3, minmax(0, 1fr));
+         gap: 1rem;
+         margin-top: 1.4rem;
+       }
         .proof-card {
           margin-top: 1.4rem;
           padding: 1rem;
@@ -1352,10 +1362,12 @@ export default function Portfolio() {
           .badge-2 { left: -4%; }
 
           .project-content-grid,
+          .project-proof-grid,
           .resume-layout,
           .contact-grid {
             grid-template-columns: 1fr;
             gap: 2rem;
+          }
           }
         }
 
@@ -1654,7 +1666,7 @@ export default function Portfolio() {
             These projects show the pattern of my work: diagnose the bottleneck, automate the workflow, serve reliable data, make the result measurable, and document the tradeoffs clearly.
           </p>
         </div>
-
+      
         <div className="projects-grid">
           {projects.map((project, index) => (
             <article
@@ -1668,7 +1680,7 @@ export default function Portfolio() {
                   <h3 className="project-title">{project.title}</h3>
                   <span className="project-type">{project.type}</span>
                 </div>
-
+      
                 {project.link ? (
                   <a
                     href={project.link}
@@ -1685,22 +1697,22 @@ export default function Portfolio() {
                   </span>
                 )}
               </div>
-
+      
               <div className="project-content-grid">
                 <div>
                   <div className="project-section-label">The Challenge</div>
                   <div className="project-section-content">{project.challenge}</div>
-
+      
                   <div className="project-section-label">The Solution</div>
                   <div className="project-section-content">{project.solution}</div>
-
+      
                   <div className="project-section-label">My Role</div>
                   <div className="project-section-content">{project.role}</div>
                 </div>
-
+      
                 <div>
                   <div className="project-section-label">Measurable Impact</div>
-
+      
                   <div className="project-impact">
                     {project.impact.map((item) => (
                       <div key={`${project.id}-${item.label}`}>
@@ -1709,32 +1721,34 @@ export default function Portfolio() {
                       </div>
                     ))}
                   </div>
-
-                  <div className="proof-card">
-                    <strong>Business Value</strong>
-                    <p>{project.businessValue}</p>
-                  </div>
-
-                  <div className="proof-card">
-                    <strong>How Impact Was Measured</strong>
-                    <p>{project.impactContext}</p>
-                  </div>
-
-                  <div className="proof-card">
-                    <strong>Visual Proof</strong>
-                    <p>{project.visualProof}</p>
-
-                    <div className="evidence-pills">
-                      {project.proofItems.map((item) => (
-                        <span key={`${project.id}-${item}`} className="evidence-pill">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                </div>
+              </div>
+      
+              <div className="project-proof-grid">
+                <div className="proof-card">
+                  <strong>Business Value</strong>
+                  <p>{project.businessValue}</p>
+                </div>
+      
+                <div className="proof-card">
+                  <strong>How Impact Was Measured</strong>
+                  <p>{project.impactContext}</p>
+                </div>
+      
+                <div className="proof-card">
+                  <strong>Visual Proof</strong>
+                  <p>{project.visualProof}</p>
+      
+                  <div className="evidence-pills">
+                    {project.proofItems.map((item) => (
+                      <span key={`${project.id}-${item}`} className="evidence-pill">
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
-
+      
               <div className="project-tech">
                 {project.tech.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
@@ -1744,7 +1758,6 @@ export default function Portfolio() {
           ))}
         </div>
       </section>
-
       <section id="stack" className="section">
         <div className={`section-header ${isVisible.stack ? 'visible' : ''}`}>
           <div className="section-label">03. TECHNICAL STACK</div>
