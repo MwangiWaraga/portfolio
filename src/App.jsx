@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, ChevronDown, Database, Terminal, BarChart3, Award, Download, ExternalLink, Briefcase, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { Mail, ChevronDown, Database, Terminal, BarChart3, Award, ExternalLink, Briefcase, GraduationCap, CheckCircle2, Zap, LayoutTemplate } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Portfolio() {
@@ -221,12 +221,11 @@ export default function Portfolio() {
           color: var(--accent-primary);
         }
 
-        /* Hero Section */
+        /* Hero Section Restructured */
         .hero {
           min-height: 100vh;
           display: flex;
           align-items: center;
-          justify-content: center;
           position: relative;
           padding: 8rem 2rem 4rem;
           overflow: hidden;
@@ -244,10 +243,20 @@ export default function Portfolio() {
           pointer-events: none;
         }
 
-        .hero-content {
-          max-width: 900px;
+        .hero-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 4rem;
           position: relative;
           z-index: 2;
+        }
+
+        .hero-content {
+          flex: 1.2;
           animation: fadeInUp 1s ease-out;
         }
 
@@ -262,7 +271,7 @@ export default function Portfolio() {
           padding: 0.5rem 1.2rem;
           border-radius: 20px;
           border: 1px solid rgba(56, 189, 248, 0.3);
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
         }
 
         .hero-label span {
@@ -275,17 +284,17 @@ export default function Portfolio() {
         }
 
         .hero h1 {
-          font-size: clamp(3rem, 6vw, 5rem);
+          font-size: clamp(3rem, 5vw, 4.5rem);
           font-weight: 700;
-          margin-bottom: 1rem;
+          margin-bottom: 0.5rem;
           line-height: 1.1;
           letter-spacing: -0.02em;
         }
 
         .hero-subtitle {
-          font-size: clamp(1.2rem, 2vw, 1.6rem);
+          font-size: clamp(1.1rem, 2vw, 1.4rem);
           color: var(--text-secondary);
-          margin-bottom: 1.5rem;
+          margin-bottom: 1rem;
           font-weight: 400;
         }
 
@@ -293,26 +302,74 @@ export default function Portfolio() {
           color: var(--accent-primary);
         }
 
+        /* ALX Point 2: Clear Offerings/Strengths */
+        .offerings-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.8rem;
+          margin-bottom: 2rem;
+        }
+
+        .offering-tag {
+          font-family: 'Fira Code', monospace;
+          font-size: 0.8rem;
+          color: var(--accent-primary);
+          border: 1px solid var(--border-color);
+          background: var(--bg-tertiary);
+          padding: 0.3rem 0.8rem;
+          border-radius: 4px;
+        }
+
         .hero-description {
-          font-size: 1.15rem;
+          font-size: 1.1rem;
           color: var(--text-secondary);
+          margin-bottom: 2rem;
+          max-width: 650px;
+          line-height: 1.7;
+        }
+
+        /* ALX Point 3: Visual Accomplishments Grid */
+        .hero-stats {
+          display: flex;
+          gap: 2.5rem;
           margin-bottom: 2.5rem;
-          max-width: 750px;
-          line-height: 1.8;
+          padding-bottom: 2.5rem;
+          border-bottom: 1px solid var(--border-color);
+          max-width: 600px;
+        }
+
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .stat-number {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          line-height: 1;
+          margin-bottom: 0.3rem;
+          font-family: 'Fira Code', monospace;
+        }
+
+        .stat-label {
+          font-size: 0.85rem;
+          color: var(--accent-primary);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
 
         .hero-cta {
           display: flex;
-          gap: 1.2rem;
+          gap: 1rem;
           flex-wrap: wrap;
-          margin-bottom: 4rem;
         }
 
         .cta-button {
           display: inline-flex;
           align-items: center;
           gap: 0.6rem;
-          padding: 1rem 2rem;
+          padding: 0.9rem 1.8rem;
           border-radius: 8px;
           font-weight: 600;
           font-size: 0.95rem;
@@ -341,6 +398,62 @@ export default function Portfolio() {
         .cta-secondary:hover {
           border-color: var(--text-primary);
           background: rgba(248, 250, 252, 0.05);
+        }
+
+        /* Profile Photo Container */
+        .hero-image-container {
+          flex: 0.8;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero-image-wrapper {
+          position: relative;
+          width: 320px;
+          height: 320px;
+          border-radius: 50%;
+          padding: 8px;
+          background: linear-gradient(135deg, var(--accent-primary), var(--bg-primary));
+          box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
+        }
+
+        .hero-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 4px solid var(--bg-primary);
+          background-color: var(--bg-tertiary);
+        }
+
+        .floating-badge {
+          position: absolute;
+          background: rgba(15, 23, 42, 0.9);
+          border: 1px solid var(--border-color);
+          padding: 0.6rem 1rem;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.85rem;
+          color: var(--text-primary);
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .badge-1 {
+          top: 10%;
+          right: -15%;
+          animation: float 4s ease-in-out infinite;
+        }
+
+        .badge-2 {
+          bottom: 15%;
+          left: -10%;
+          animation: float 5s ease-in-out infinite reverse;
         }
 
         .scroll-indicator {
@@ -807,8 +920,25 @@ export default function Portfolio() {
           0%, 100% { transform: translateX(-50%) translateY(0); }
           50% { transform: translateX(-50%) translateY(10px); }
         }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+          .hero-container {
+            flex-direction: column-reverse;
+            text-align: center;
+            gap: 2rem;
+          }
+          .offerings-row { justify-content: center; }
+          .hero-stats { margin: 0 auto 2.5rem; justify-content: center; }
+          .hero-cta { justify-content: center; }
+          .badge-1 { right: -5%; }
+          .badge-2 { left: -5%; }
+        }
+
         @media (max-width: 968px) {
           .project-content-grid, .resume-layout {
             grid-template-columns: 1fr;
@@ -819,10 +949,12 @@ export default function Portfolio() {
         @media (max-width: 768px) {
           .nav-links { display: none; }
           .hero h1 { font-size: 2.5rem; }
+          .hero-image-wrapper { width: 250px; height: 250px; }
           .project-card { padding: 2rem; }
           .project-impact { grid-template-columns: 1fr; }
           .hero-cta { flex-direction: column; }
           .cta-button { width: 100%; justify-content: center; }
+          .floating-badge { display: none; } /* Hide floating badges on mobile to save space */
         }
       `}</style>
 
@@ -842,36 +974,77 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* ALX-Optimized Hero Section */}
       <section id="hero" className="hero">
         <div className="hero-glow"></div>
-        <div className="hero-content">
-          <div className="hero-label">
-            <span></span> OPEN FOR OPPORTUNITIES
-          </div>
-          <h1>Jackson Mwangi.</h1>
-          <div className="hero-subtitle">Data Analyst <span>|</span> Analytics Engineer <span>|</span> Data Engineer</div>
-          <p className="hero-description">
-            Results-driven data professional with 5+ years of experience solving complex operational problems in high-growth fintech, supply chain, and asset-financing environments. I specialize in bridging the gap between heavy data infrastructure and daily workflows to turn messy data into dependable systems.
-          </p>
+        <div className="hero-container">
           
-          <div className="hero-cta">
-            <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }} className="cta-button cta-primary">
-              View My Work
-            </a>
-            <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
-              <FaLinkedin size={18} />
-              LinkedIn
-            </a>
-            <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
-              <FaGithub size={18} />
-              GitHub
-            </a>
-            <a href="mailto:jackmwangu@gmail.com" className="cta-button cta-secondary">
-              <Mail size={18} />
-              Email
-            </a>
+          <div className="hero-content">
+            <div className="hero-label">
+              <span></span> OPEN FOR OPPORTUNITIES
+            </div>
+            
+            <h1>Jackson Mwangi.</h1>
+            <div className="hero-subtitle">Data Analyst <span>|</span> Analytics Engineer <span>|</span> Data Engineer</div>
+            
+            {/* ALX Point 2: Clear Offerings */}
+            <div className="offerings-row">
+              <span className="offering-tag">Cloud Architecture</span>
+              <span className="offering-tag">Pipeline Automation</span>
+              <span className="offering-tag">Advanced Analytics</span>
+            </div>
+
+            {/* ALX Point 1: Short & Clear Bio */}
+            <p className="hero-description">
+              Results-driven data professional bridging the gap between heavy infrastructure and daily workflows. I specialize in turning messy data into dependable systems to eliminate bottlenecks in high-growth operational environments.
+            </p>
+            
+            {/* ALX Point 3: Visual Accomplishments Grid */}
+            <div className="hero-stats">
+              <div className="stat-item">
+                <div className="stat-number">5+</div>
+                <div className="stat-label">Years Exp</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-number">90%</div>
+                <div className="stat-label">Error Reduction</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-number">3+</div>
+                <div className="stat-label">Markets Scaled</div>
+              </div>
+            </div>
+
+            <div className="hero-cta">
+              <a href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }} className="cta-button cta-primary">
+                View My Work
+              </a>
+              <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
+                <FaLinkedin size={18} />
+                LinkedIn
+              </a>
+              <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
+                <FaGithub size={18} />
+                GitHub
+              </a>
+            </div>
           </div>
+
+          {/* Profile Image Container */}
+          <div className="hero-image-container">
+            <div className="hero-image-wrapper">
+              {/* NOTE: Make sure profile.jpg is in your 'public' folder! */}
+              <img src="/profile.jpg" alt="Jackson Mwangi" className="hero-image" />
+              
+              <div className="floating-badge badge-1">
+                <Database size={16} color="var(--accent-primary)"/> GCP / BigQuery
+              </div>
+              <div className="floating-badge badge-2">
+                <Zap size={16} color="var(--accent-primary)"/> Process Automation
+              </div>
+            </div>
+          </div>
+
         </div>
         
         <div className="scroll-indicator" onClick={() => scrollToSection('stack')}>
