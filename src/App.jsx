@@ -138,7 +138,6 @@ export default function Portfolio() {
       ],
       tech: ['GCP', 'FastAPI', 'Redis', 'BigQuery', 'Docker', 'Python'],
       linkText: 'View Case Study',
-      // Replace this with a sanitized public case study repo when ready.
       link: 'https://github.com/MwangiWaraga'
     },
     {
@@ -161,7 +160,6 @@ export default function Portfolio() {
       ],
       tech: ['Python', 'BigQuery', 'Google Apps Script', 'FastAPI', 'SQL'],
       linkText: 'View Pipeline Notes',
-      // Replace this with a sanitized public case study repo when ready.
       link: 'https://github.com/MwangiWaraga'
     },
     {
@@ -184,7 +182,6 @@ export default function Portfolio() {
       ],
       tech: ['SQL', 'Python', 'Metabase', 'Data Modeling', 'Forecasting'],
       linkText: 'View Case Study',
-      // Replace this with a sanitized public case study repo when ready.
       link: 'https://github.com/MwangiWaraga'
     },
     {
@@ -207,7 +204,6 @@ export default function Portfolio() {
       ],
       tech: ['BigQuery', 'dbt', 'Metabase', 'ETL', 'Analytics Engineering'],
       linkText: 'View Repository',
-      // Replace this with the real repository URL.
       link: 'https://github.com/MwangiWaraga'
     }
   ];
@@ -298,14 +294,19 @@ export default function Portfolio() {
           --accent-secondary: #0ea5e9;
           --accent-glow: rgba(56, 189, 248, 0.15);
           --border-color: #334155;
-          --success-glow: rgba(34, 197, 94, 0.16);
+          --success-glow: rgba(56, 189, 248, 0.16);
+          --container-width: 1140px;
         }
 
         html {
           scroll-behavior: smooth;
+          width: 100%;
+          overflow-x: hidden;
         }
 
         body {
+          width: 100%;
+          min-width: 0;
           background: var(--bg-primary);
           color: var(--text-primary);
           font-family: 'Inter', sans-serif;
@@ -313,10 +314,17 @@ export default function Portfolio() {
           overflow-x: hidden;
         }
 
+        button,
+        a {
+          -webkit-tap-highlight-color: transparent;
+        }
+
         .portfolio {
           position: relative;
           z-index: 1;
+          width: 100%;
           min-height: 100vh;
+          overflow-x: hidden;
           background:
             radial-gradient(circle at top center, rgba(56, 189, 248, 0.08), transparent 35%),
             var(--bg-primary);
@@ -338,8 +346,9 @@ export default function Portfolio() {
         nav {
           position: fixed;
           top: 0;
+          left: 0;
           width: 100%;
-          background: rgba(2, 6, 23, 0.86);
+          background: rgba(2, 6, 23, 0.88);
           backdrop-filter: blur(12px);
           border-bottom: 1px solid var(--border-color);
           z-index: 1000;
@@ -347,40 +356,43 @@ export default function Portfolio() {
         }
 
         .nav-content {
-          max-width: 1200px;
+          width: min(var(--container-width), calc(100% - 3rem));
           margin: 0 auto;
-          padding: 0 2rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: 2rem;
         }
 
-        .logo {
-          font-family: 'Fira Code', monospace;
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--accent-primary);
+        .brand-name {
+          color: var(--text-primary);
+          text-decoration: none;
+          font-size: 1rem;
+          font-weight: 800;
           letter-spacing: -0.02em;
           white-space: nowrap;
+          transition: color 0.3s;
         }
 
-        .logo span {
-          color: var(--text-primary);
+        .brand-name:hover {
+          color: var(--accent-primary);
         }
 
         .nav-links {
           display: flex;
-          gap: 1.6rem;
+          gap: 1.45rem;
           list-style: none;
           align-items: center;
+          flex-wrap: nowrap;
         }
 
         .nav-links a {
           color: var(--text-secondary);
           text-decoration: none;
           font-size: 0.9rem;
-          font-weight: 500;
+          font-weight: 600;
           transition: color 0.3s;
+          white-space: nowrap;
         }
 
         .nav-links a:hover,
@@ -393,7 +405,7 @@ export default function Portfolio() {
           display: flex;
           align-items: center;
           position: relative;
-          padding: 8rem 2rem 4rem;
+          padding: 8rem 0 4rem;
           overflow: hidden;
         }
 
@@ -410,19 +422,18 @@ export default function Portfolio() {
         }
 
         .hero-container {
-          max-width: 1200px;
+          width: min(var(--container-width), calc(100% - 3rem));
           margin: 0 auto;
-          width: 100%;
-          display: flex;
+          display: grid;
+          grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.75fr);
           align-items: center;
-          justify-content: space-between;
-          gap: 4rem;
+          gap: 3rem;
           position: relative;
           z-index: 2;
         }
 
         .hero-content {
-          flex: 1.2;
+          min-width: 0;
           animation: fadeInUp 1s ease-out;
         }
 
@@ -431,13 +442,14 @@ export default function Portfolio() {
           align-items: center;
           gap: 0.5rem;
           font-family: 'Fira Code', monospace;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--accent-primary);
           background: var(--accent-glow);
-          padding: 0.5rem 1.2rem;
+          padding: 0.5rem 1.1rem;
           border-radius: 20px;
           border: 1px solid rgba(56, 189, 248, 0.3);
           margin-bottom: 1.5rem;
+          white-space: nowrap;
         }
 
         .hero-label span {
@@ -447,59 +459,65 @@ export default function Portfolio() {
           border-radius: 50%;
           box-shadow: 0 0 10px var(--accent-primary);
           animation: pulse 2s infinite;
+          flex-shrink: 0;
         }
 
         .hero h1 {
-          font-size: clamp(3rem, 5vw, 4.7rem);
+          font-size: clamp(3.2rem, 5.4vw, 4.5rem);
           font-weight: 800;
           margin-bottom: 0.5rem;
-          line-height: 1.05;
-          letter-spacing: -0.04em;
+          line-height: 1.02;
+          letter-spacing: -0.055em;
+          white-space: nowrap;
         }
 
         .hero-subtitle {
-          font-size: clamp(1.1rem, 2vw, 1.35rem);
+          font-size: clamp(1.05rem, 1.7vw, 1.32rem);
           color: var(--text-secondary);
-          margin-bottom: 1rem;
-          font-weight: 400;
+          margin-bottom: 1.1rem;
+          font-weight: 500;
+          white-space: nowrap;
         }
 
         .hero-subtitle span {
           color: var(--accent-primary);
+          margin: 0 0.28rem;
         }
 
         .offerings-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.8rem;
+          gap: 0.7rem;
           margin-bottom: 2rem;
+          max-width: 650px;
         }
 
         .offering-tag {
           font-family: 'Fira Code', monospace;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           color: var(--accent-primary);
           border: 1px solid var(--border-color);
           background: rgba(30, 41, 59, 0.76);
           padding: 0.35rem 0.8rem;
           border-radius: 999px;
+          white-space: nowrap;
         }
 
         .hero-description {
-          font-size: 1.08rem;
+          font-size: 1.06rem;
           color: var(--text-secondary);
           margin-bottom: 2rem;
-          max-width: 680px;
+          max-width: 650px;
           line-height: 1.75;
         }
 
         .hero-stats {
           display: flex;
-          gap: 2.5rem;
-          margin-bottom: 2.5rem;
-          padding-bottom: 2.5rem;
+          gap: 2.4rem;
+          margin-bottom: 2.4rem;
+          padding-bottom: 2.3rem;
           border-bottom: 1px solid var(--border-color);
-          max-width: 640px;
+          max-width: 650px;
         }
 
         .stat-item {
@@ -517,10 +535,11 @@ export default function Portfolio() {
         }
 
         .stat-label {
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           color: var(--accent-primary);
           text-transform: uppercase;
           letter-spacing: 0.05em;
+          white-space: nowrap;
         }
 
         .hero-cta {
@@ -536,12 +555,13 @@ export default function Portfolio() {
           gap: 0.6rem;
           padding: 0.9rem 1.5rem;
           border-radius: 8px;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 0.95rem;
           text-decoration: none;
           transition: all 0.3s;
           border: none;
           cursor: pointer;
+          white-space: nowrap;
         }
 
         .cta-primary {
@@ -567,18 +587,18 @@ export default function Portfolio() {
         }
 
         .hero-image-container {
-          flex: 0.8;
           display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
           animation: fadeInUp 1.2s ease-out;
+          min-width: 0;
         }
 
         .hero-image-wrapper {
           position: relative;
-          width: 320px;
-          height: 320px;
+          width: min(310px, 100%);
+          aspect-ratio: 1;
           border-radius: 50%;
           padding: 8px;
           background: linear-gradient(135deg, var(--accent-primary), var(--bg-primary));
@@ -596,7 +616,7 @@ export default function Portfolio() {
 
         .floating-badge {
           position: absolute;
-          background: rgba(15, 23, 42, 0.92);
+          background: rgba(15, 23, 42, 0.94);
           border: 1px solid var(--border-color);
           padding: 0.6rem 1rem;
           border-radius: 10px;
@@ -604,6 +624,7 @@ export default function Portfolio() {
           align-items: center;
           gap: 0.5rem;
           font-size: 0.85rem;
+          font-weight: 700;
           color: var(--text-primary);
           backdrop-filter: blur(10px);
           box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -612,13 +633,13 @@ export default function Portfolio() {
 
         .badge-1 {
           top: 10%;
-          right: -15%;
+          right: -13%;
           animation: float 4s ease-in-out infinite;
         }
 
         .badge-2 {
           bottom: 15%;
-          left: -10%;
+          left: -9%;
           animation: float 5s ease-in-out infinite reverse;
         }
 
@@ -640,8 +661,8 @@ export default function Portfolio() {
         }
 
         .section {
-          padding: 7rem 2rem;
-          max-width: 1200px;
+          padding: 7rem 0;
+          width: min(var(--container-width), calc(100% - 3rem));
           margin: 0 auto;
           position: relative;
           z-index: 2;
@@ -682,6 +703,7 @@ export default function Portfolio() {
           font-weight: 800;
           color: var(--text-primary);
           letter-spacing: -0.03em;
+          line-height: 1.1;
         }
 
         .section-intro {
@@ -694,8 +716,8 @@ export default function Portfolio() {
 
         .stack-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 2rem;
+          grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+          gap: 1.5rem;
         }
 
         .stack-category,
@@ -703,11 +725,12 @@ export default function Portfolio() {
           background: rgba(15, 23, 42, 0.62);
           border: 1px solid var(--border-color);
           border-radius: 16px;
-          padding: 2.4rem;
+          padding: 2.2rem;
           transition: all 0.4s;
           opacity: 0;
           transform: translateY(30px);
           backdrop-filter: blur(10px);
+          min-width: 0;
         }
 
         .stack-category.visible,
@@ -740,7 +763,8 @@ export default function Portfolio() {
         .service-card h3 {
           font-size: 1.3rem;
           margin-bottom: 1rem;
-          font-weight: 700;
+          font-weight: 800;
+          line-height: 1.2;
         }
 
         .service-description {
@@ -760,7 +784,7 @@ export default function Portfolio() {
           color: var(--text-secondary);
           padding: 0.5rem 1rem;
           border-radius: 6px;
-          font-size: 0.86rem;
+          font-size: 0.84rem;
           border: 1px solid var(--border-color);
           font-family: 'Fira Code', monospace;
           transition: all 0.3s;
@@ -774,18 +798,19 @@ export default function Portfolio() {
         .projects-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 3rem;
+          gap: 2rem;
         }
 
         .project-card {
           background: rgba(15, 23, 42, 0.62);
           border: 1px solid var(--border-color);
           border-radius: 16px;
-          padding: 3rem;
+          padding: 2.6rem;
           opacity: 0;
           transform: translateY(40px);
           transition: all 0.6s ease-out;
           backdrop-filter: blur(10px);
+          min-width: 0;
         }
 
         .project-card.visible {
@@ -817,6 +842,7 @@ export default function Portfolio() {
           font-weight: 800;
           color: var(--text-primary);
           letter-spacing: -0.02em;
+          line-height: 1.15;
         }
 
         .project-type {
@@ -836,7 +862,7 @@ export default function Portfolio() {
           color: var(--text-secondary);
           text-decoration: none;
           font-size: 0.9rem;
-          font-weight: 700;
+          font-weight: 800;
           transition: color 0.3s;
           white-space: nowrap;
         }
@@ -847,8 +873,8 @@ export default function Portfolio() {
 
         .project-content-grid {
           display: grid;
-          grid-template-columns: 1.2fr 1fr;
-          gap: 3rem;
+          grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
+          gap: 2.5rem;
           margin-top: 2rem;
         }
 
@@ -869,9 +895,9 @@ export default function Portfolio() {
 
         .project-impact {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 1rem;
-          padding: 1.5rem;
+          padding: 1.4rem;
           background: rgba(2, 6, 23, 0.74);
           border-radius: 12px;
           border: 1px solid var(--border-color);
@@ -879,14 +905,15 @@ export default function Portfolio() {
 
         .impact-metric {
           font-family: 'Fira Code', monospace;
-          font-size: 1.35rem;
+          font-size: 1.3rem;
           font-weight: 800;
           color: var(--text-primary);
           margin-bottom: 0.2rem;
+          line-height: 1.2;
         }
 
         .impact-label {
-          font-size: 0.78rem;
+          font-size: 0.76rem;
           color: var(--accent-primary);
           line-height: 1.35;
         }
@@ -902,7 +929,7 @@ export default function Portfolio() {
 
         .tech-tag {
           font-family: 'Fira Code', monospace;
-          font-size: 0.8rem;
+          font-size: 0.78rem;
           background: var(--bg-tertiary);
           color: var(--text-primary);
           padding: 0.4rem 0.8rem;
@@ -931,8 +958,8 @@ export default function Portfolio() {
 
         .resume-layout {
           display: grid;
-          grid-template-columns: 1.5fr 1fr;
-          gap: 4rem;
+          grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.9fr);
+          gap: 3.5rem;
         }
 
         .experience-timeline {
@@ -1023,6 +1050,7 @@ export default function Portfolio() {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
+          min-width: 0;
         }
 
         .side-card {
@@ -1092,16 +1120,18 @@ export default function Portfolio() {
         }
 
         .contact-card {
+          width: 100%;
           background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.7));
           border: 1px solid rgba(56, 189, 248, 0.24);
           border-radius: 20px;
-          padding: 3rem;
+          padding: 2.7rem;
           backdrop-filter: blur(10px);
+          overflow: hidden;
         }
 
         .contact-grid {
           display: grid;
-          grid-template-columns: 1.25fr 0.75fr;
+          grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
           gap: 2rem;
           align-items: center;
         }
@@ -1109,36 +1139,43 @@ export default function Portfolio() {
         .contact-note {
           color: var(--text-secondary);
           line-height: 1.75;
-          margin-top: 1rem;
           margin-bottom: 2rem;
+          max-width: 660px;
+          font-size: 1.05rem;
         }
 
         .availability-card {
           background: rgba(2, 6, 23, 0.62);
           border: 1px solid var(--border-color);
           border-radius: 14px;
-          padding: 1.4rem;
+          padding: 1.25rem;
         }
 
         .availability-item {
-          display: flex;
-          align-items: center;
-          gap: 0.7rem;
+          display: grid;
+          grid-template-columns: auto 1fr;
+          align-items: start;
+          gap: 0.75rem;
           color: var(--text-secondary);
-          margin-bottom: 1rem;
+          padding: 0.9rem 0;
+          border-bottom: 1px solid rgba(51, 65, 85, 0.55);
+          line-height: 1.55;
+        }
+
+        .availability-item:first-child {
+          padding-top: 0;
         }
 
         .availability-item:last-child {
-          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
         }
 
-        .availability-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background: #22c55e;
-          box-shadow: 0 0 14px var(--success-glow);
+        .availability-icon {
+          color: var(--accent-primary);
+          margin-top: 0.15rem;
           flex-shrink: 0;
+          filter: drop-shadow(0 0 8px var(--success-glow));
         }
 
         .footer {
@@ -1193,17 +1230,64 @@ export default function Portfolio() {
           50% { transform: translateY(-10px); }
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1120px) {
           .nav-links {
             gap: 1rem;
           }
+
+          .nav-links a {
+            font-size: 0.85rem;
+          }
+
+          .hero-container {
+            grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
+            gap: 2rem;
+          }
+
+          .hero h1 {
+            font-size: clamp(3rem, 5vw, 4rem);
+          }
+
+          .hero-subtitle {
+            font-size: 1.08rem;
+          }
+
+          .hero-image-wrapper {
+            width: 280px;
+          }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 980px) {
+          .nav-links {
+            display: none;
+          }
+
+          .hero {
+            min-height: auto;
+            padding-top: 7.5rem;
+          }
+
           .hero-container {
-            flex-direction: column-reverse;
+            grid-template-columns: 1fr;
             text-align: center;
-            gap: 2rem;
+            gap: 2.5rem;
+          }
+
+          .hero-image-container {
+            order: -1;
+          }
+
+          .hero h1 {
+            white-space: normal;
+          }
+
+          .hero-subtitle {
+            white-space: normal;
+          }
+
+          .hero-label {
+            white-space: normal;
+            justify-content: center;
           }
 
           .offerings-row,
@@ -1211,60 +1295,89 @@ export default function Portfolio() {
             justify-content: center;
           }
 
+          .hero-description {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
           .hero-stats {
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 2.4rem;
             justify-content: center;
           }
 
-          .badge-1 { right: -5%; }
-          .badge-2 { left: -5%; }
-        }
+          .badge-1 { right: -4%; }
+          .badge-2 { left: -4%; }
 
-        @media (max-width: 968px) {
           .project-content-grid,
           .resume-layout,
           .contact-grid {
             grid-template-columns: 1fr;
             gap: 2rem;
           }
-
-          .nav-links {
-            display: none;
-          }
         }
 
         @media (max-width: 768px) {
+          :root {
+            --container-width: 100%;
+          }
+
+          .nav-content,
+          .hero-container,
           .section {
-            padding: 5rem 1.25rem;
+            width: min(100% - 2rem, 100%);
+          }
+
+          .brand-name {
+            font-size: 0.98rem;
+          }
+
+          .section {
+            padding: 5rem 0;
           }
 
           .hero {
-            padding-left: 1.25rem;
-            padding-right: 1.25rem;
+            padding-top: 7rem;
+            padding-bottom: 4rem;
           }
 
           .hero h1 {
-            font-size: 2.65rem;
+            font-size: 2.75rem;
+            letter-spacing: -0.045em;
+          }
+
+          .hero-subtitle {
+            font-size: 1.02rem;
+          }
+
+          .hero-description {
+            font-size: 1rem;
           }
 
           .hero-image-wrapper {
-            width: 250px;
-            height: 250px;
+            width: 240px;
           }
 
           .hero-stats {
             flex-direction: column;
             gap: 1.4rem;
             align-items: center;
+            text-align: center;
           }
 
           .project-card,
-          .contact-card {
-            padding: 2rem;
+          .contact-card,
+          .stack-category,
+          .service-card {
+            padding: 1.6rem;
+          }
+
+          .side-card {
+            padding: 1.6rem;
           }
 
           .project-top-row {
             flex-direction: column;
+            gap: 1.2rem;
           }
 
           .project-impact {
@@ -1273,6 +1386,7 @@ export default function Portfolio() {
 
           .hero-cta {
             flex-direction: column;
+            width: 100%;
           }
 
           .cta-button {
@@ -1281,6 +1395,32 @@ export default function Portfolio() {
 
           .floating-badge {
             display: none;
+          }
+
+          .scroll-indicator {
+            display: none;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .hero h1 {
+            font-size: 2.35rem;
+          }
+
+          .hero-label {
+            font-size: 0.68rem;
+          }
+
+          .section-title {
+            font-size: 2rem;
+          }
+
+          .project-card,
+          .contact-card,
+          .stack-category,
+          .service-card,
+          .side-card {
+            padding: 1.25rem;
           }
         }
 
@@ -1299,7 +1439,17 @@ export default function Portfolio() {
 
       <nav aria-label="Primary navigation">
         <div className="nav-content">
-          <div className="logo">&lt;JM<span>.data</span>/&gt;</div>
+          <a
+            href="#hero"
+            className="brand-name"
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToSection('hero');
+            }}
+          >
+            Jackson Mwangi
+          </a>
+
           <ul className="nav-links">
             {navItems.map((item) => (
               <li key={item.id}>
@@ -1321,15 +1471,17 @@ export default function Portfolio() {
 
       <section id="hero" className="hero">
         <div className="hero-glow" />
+
         <div className="hero-container">
           <div className="hero-content">
             <div className="hero-label">
               <span /> OPEN FOR DATA, ANALYTICS & AUTOMATION ROLES
             </div>
 
-            <h1>Jackson Mwangi.</h1>
+            <h1>Jackson Mwangi</h1>
+
             <div className="hero-subtitle">
-              Operational Analytics Engineer <span>|</span> Data Automation <span>|</span> Cloud Data Systems
+              Data & Operations Analyst <span>|</span> Analytics Engineer
             </div>
 
             <div className="offerings-row">
@@ -1369,10 +1521,22 @@ export default function Portfolio() {
               >
                 View My Work <ArrowRight size={18} />
               </a>
-              <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
+
+              <a
+                href="https://www.linkedin.com/in/waraga/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-button cta-secondary"
+              >
                 <FaLinkedin size={18} /> LinkedIn
               </a>
-              <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
+
+              <a
+                href="https://github.com/MwangiWaraga/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-button cta-secondary"
+              >
                 <FaGithub size={18} /> GitHub
               </a>
             </div>
@@ -1385,6 +1549,7 @@ export default function Portfolio() {
               <div className="floating-badge badge-1">
                 <Database size={16} color="var(--accent-primary)" /> GCP / BigQuery
               </div>
+
               <div className="floating-badge badge-2">
                 <Zap size={16} color="var(--accent-primary)" /> Process Automation
               </div>
@@ -1392,8 +1557,14 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <button className="scroll-indicator" onClick={() => scrollToSection('services')} aria-label="Scroll to what I do section">
-          <span style={{ fontSize: '0.75rem', letterSpacing: '0.1em', fontFamily: 'Fira Code' }}>SCROLL</span>
+        <button
+          className="scroll-indicator"
+          onClick={() => scrollToSection('services')}
+          aria-label="Scroll to what I do section"
+        >
+          <span style={{ fontSize: '0.75rem', letterSpacing: '0.1em', fontFamily: 'Fira Code' }}>
+            SCROLL
+          </span>
           <ChevronDown size={20} />
         </button>
       </section>
@@ -1410,6 +1581,7 @@ export default function Portfolio() {
         <div className="stack-grid">
           {services.map((service, index) => {
             const Icon = service.icon;
+
             return (
               <div
                 key={service.title}
@@ -1419,8 +1591,10 @@ export default function Portfolio() {
                 <div className="stack-icon">
                   <Icon size={24} />
                 </div>
+
                 <h3>{service.title}</h3>
                 <p className="service-description">{service.description}</p>
+
                 <div className="stack-items">
                   {service.points.map((point) => (
                     <span key={point} className="stack-item">{point}</span>
@@ -1454,6 +1628,7 @@ export default function Portfolio() {
                   <h3 className="project-title">{project.title}</h3>
                   <span className="project-type">{project.type}</span>
                 </div>
+
                 <a
                   href={project.link}
                   className="project-link"
@@ -1479,6 +1654,7 @@ export default function Portfolio() {
 
                 <div>
                   <div className="project-section-label">Measurable Impact</div>
+
                   <div className="project-impact">
                     {project.impact.map((item) => (
                       <div key={`${project.id}-${item.label}`}>
@@ -1526,7 +1702,9 @@ export default function Portfolio() {
                 {category === 'Architecture & Automation' && <Terminal size={24} />}
                 {category === 'Business Operations' && <BarChart3 size={24} />}
               </div>
+
               <h3>{category}</h3>
+
               <div className="stack-items">
                 {skills.map((skill) => (
                   <span key={skill} className="stack-item">{skill}</span>
@@ -1558,6 +1736,7 @@ export default function Portfolio() {
                 <div className="experience-role">{exp.role}</div>
                 <div className="experience-company">{exp.company} • {exp.location}</div>
                 <p className="experience-description">{exp.description}</p>
+
                 {exp.highlight && (
                   <div className="experience-highlight">
                     <Award size={18} className="highlight-icon" />
@@ -1573,6 +1752,7 @@ export default function Portfolio() {
               <div className="side-card-header">
                 <GraduationCap size={20} className="side-card-icon" /> Education
               </div>
+
               <ul className="side-list">
                 {education.map((item) => (
                   <li key={item.title}>
@@ -1590,6 +1770,7 @@ export default function Portfolio() {
               <div className="side-card-header">
                 <Briefcase size={20} className="side-card-icon" /> Verified Certifications
               </div>
+
               <ul className="side-list">
                 {certifications.map((cert) => (
                   <li key={cert.title}>
@@ -1622,14 +1803,27 @@ export default function Portfolio() {
               <p className="contact-note">
                 I am open to Data Analyst, Analytics Engineer, Data Engineer, and Operations Automation roles — especially where data, cloud systems, and business workflows meet.
               </p>
+
               <div className="hero-cta">
                 <a href="mailto:jackmwangu@gmail.com" className="cta-button cta-primary">
                   <Mail size={18} /> Email Me
                 </a>
-                <a href={publicAsset('Jackson-Mwangi-Resume.pdf')} target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
+
+                <a
+                  href={publicAsset('Jackson-Mwangi-Resume.pdf')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-button cta-secondary"
+                >
                   <FileDown size={18} /> Download Resume
                 </a>
-                <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer" className="cta-button cta-secondary">
+
+                <a
+                  href="https://github.com/MwangiWaraga/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cta-button cta-secondary"
+                >
                   <FaGithub size={18} /> View GitHub
                 </a>
               </div>
@@ -1637,13 +1831,18 @@ export default function Portfolio() {
 
             <div className="availability-card" aria-label="Availability summary">
               <div className="availability-item">
-                <span className="availability-dot" /> Based in Nairobi, Kenya
+                <CheckCircle2 size={18} className="availability-icon" />
+                <span>Based in Nairobi, Kenya</span>
               </div>
+
               <div className="availability-item">
-                <span className="availability-dot" /> Open to data and automation roles
+                <CheckCircle2 size={18} className="availability-icon" />
+                <span>Open to data and automation roles</span>
               </div>
+
               <div className="availability-item">
-                <span className="availability-dot" /> Strong fit for fintech, operations, and supply-chain teams
+                <CheckCircle2 size={18} className="availability-icon" />
+                <span>Strong fit for fintech, operations, and supply-chain teams</span>
               </div>
             </div>
           </div>
@@ -1652,13 +1851,26 @@ export default function Portfolio() {
 
       <footer className="footer">
         <p>© {new Date().getFullYear()} Jackson Mwangi.</p>
+
         <div className="footer-social">
-          <a href="https://www.linkedin.com/in/waraga/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          <a
+            href="https://www.linkedin.com/in/waraga/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+          >
             <FaLinkedin size={20} />
           </a>
-          <a href="https://github.com/MwangiWaraga/" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+
+          <a
+            href="https://github.com/MwangiWaraga/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+          >
             <FaGithub size={20} />
           </a>
+
           <a href="mailto:jackmwangu@gmail.com" aria-label="Send email">
             <Mail size={20} />
           </a>
