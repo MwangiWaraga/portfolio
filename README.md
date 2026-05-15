@@ -195,12 +195,6 @@ public/Jackson-Mwangi-Resume.pdf
 
 ---
 
-## 📝 License
-
-This project is open source and available under the MIT License.
-
-All case studies are written with sanitized or high-level descriptions to avoid exposing private company data.
-
 ---
 
 **Built with ❤️ by Jackson Mwangi**

@@ -195,8 +195,8 @@ export default function Portfolio() {
         { metric: '10 hrs/wk', label: 'Time saved' }
       ],
       tech: ['SQL', 'Python', 'Metabase', 'Data Modeling', 'Forecasting'],
-      linkText: 'Case Study Coming Soon',
-      link: ''
+      linkText: 'View Case Study',
+      link: 'https://github.com/MwangiWaraga/inventory-audit-forecasting-case-study'
     },
     {
       id: 4,
@@ -222,8 +222,8 @@ export default function Portfolio() {
         { metric: 'Live', label: 'Ad-spend tracking' }
       ],
       tech: ['BigQuery', 'dbt', 'Metabase', 'ETL', 'Analytics Engineering'],
-      linkText: 'Repository Coming Soon',
-      link: ''
+      linkText: 'View Case Study',
+      link: 'https://github.com/MwangiWaraga/ecommerce-data-architecture-case-study'
     }
   ];
 
